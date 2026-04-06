@@ -58,7 +58,8 @@ namespace ITYaar
 		private CodeDecode chrobj = new CodeDecode();
 		public string chatFolder = "";
 		public DateTime lastCheck = DateTime.MinValue;
-		
+		public HashSet<string> seenFiles = new HashSet<string>();
+
 		#endregion
 		public enumRunningMode GetRunnigMode()
 		{
@@ -380,29 +381,28 @@ namespace ITYaar
 				if (!Directory.Exists(chatFolder))
 					return;
 
-				// فقط فایل‌هایی که جدیدتر از آخرین بررسی هستند
-				var newFiles = System.IO.Directory
+				var files = Directory
 					.EnumerateFiles(chatFolder, "*.txt")
-					.Where(f => File.GetLastWriteTime(f) > lastCheck)
-					.OrderBy(f => f)
-					.ToList();
+					.OrderBy(f => f);
 
-				foreach (var file in newFiles)
+				foreach (var file in files)
 				{
+					if (seenFiles.Contains(file))
+						continue;
+
 					string msg = File.ReadAllText(file);
 					msg = chrobj.yyMixedWithKey(chrobj.yyAzTabeHaft(msg, 10), TXTKey.Text.Trim());
 
 					AddMessageToUI(msg);
-				}
 
-				lastCheck = DateTime.Now; // ثبت زمان آخرین بررسی
+					seenFiles.Add(file);
+				}
 			}
 			catch (Exception ex)
 			{
-				// در نسخه SMB بهتره بی‌صدا خطا رو رد کنیم
 				DoLogEvent(runningMode, "Error: " + ex.Message);
-				//AddLog(runningMode + "Error: " + ex.Message);
 			}
+			
 		}
 		void SendMessage()
 		{
@@ -419,7 +419,7 @@ namespace ITYaar
 				username = TXTUserName.Text.Trim() + " " + myIpAddress;
 			}
 			//string username = TXTUserName.Text.Trim() + new Random().Next(100, 999);
-			HashSet<string> seenFiles = new HashSet<string>();
+			
 
 			// بعد رمز بشه بر توی یه فایل توی سرور بشینه
 
