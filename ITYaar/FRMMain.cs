@@ -71,10 +71,7 @@ namespace ITYaar
 			// 1 = محیط واقعی
 			return enumRunningMode.Develop_Mode;
 		}
-		public Tahvilyaar()
-		{
-			InitializeComponent();
-		}
+
 		//Form events
 		private void Tahvilyaar_Load(object sender, EventArgs e)
 		{
@@ -188,7 +185,7 @@ namespace ITYaar
 			}
 			catch (Exception ex)
 			{
-				DoLogEvent(runningMode, "Error: Write error.");
+				DoLogEvent(runningMode, "Error: Write error."+ex.Message);
 				//MessageBox.Show("خطا در نوشتن پیام:\n" + ex.Message);
 			}
 
@@ -370,7 +367,7 @@ namespace ITYaar
 		}
 		private void AddLog(string x)
 		{
-			LBB.Items.Add(x);
+			LB.Items.Add(x);
 			int lastIndex = LB.Items.Count - 1;
 			if (lastIndex >= 0)
 			{
@@ -448,12 +445,6 @@ namespace ITYaar
 				throw;
 			}
 		}
-
-		private void ReadyBox_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
 		string GetLocalIP()
 		{
 			string ip = "";

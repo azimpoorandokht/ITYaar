@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.label3 = new System.Windows.Forms.Label();
@@ -48,6 +49,7 @@
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.LB = new System.Windows.Forms.ListBox();
+			this.TimerLoadingMSG = new System.Windows.Forms.Timer(this.components);
 			this.tabControl1.SuspendLayout();
 			this.tabPage4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.NUDTalar)).BeginInit();
@@ -117,6 +119,7 @@
 			this.BTNLogin.TabIndex = 12;
 			this.BTNLogin.Text = "ورود";
 			this.BTNLogin.UseVisualStyleBackColor = true;
+			this.BTNLogin.Click += new System.EventHandler(this.BTNLogin_Click);
 			// 
 			// username
 			// 
@@ -260,6 +263,10 @@
 			this.LB.Size = new System.Drawing.Size(1159, 108);
 			this.LB.TabIndex = 8;
 			// 
+			// TimerLoadingMSG
+			// 
+			this.TimerLoadingMSG.Interval = 4000;
+			// 
 			// FRMMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,6 +310,7 @@
 		private System.Windows.Forms.TabPage tabPage2;
 		private System.Windows.Forms.TabPage tabPage3;
 		private System.Windows.Forms.ListBox LB;
+		private System.Windows.Forms.Timer TimerLoadingMSG;
 	}
 }
 

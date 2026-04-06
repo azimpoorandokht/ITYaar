@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClssAzCodding.cs" />
     <Compile Include="FRMMain.cs">
       <SubType>Form</SubType>
     </Compile>
