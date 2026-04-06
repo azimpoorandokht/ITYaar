@@ -1,0 +1,10 @@
+C:\Users\azim\source\repos\ITYaar\ITYaar\bin\Debug\ITYaar.exe.config
+C:\Users\azim\source\repos\ITYaar\ITYaar\bin\Debug\ITYaar.exe
+C:\Users\azim\source\repos\ITYaar\ITYaar\bin\Debug\ITYaar.pdb
+C:\Users\azim\source\repos\ITYaar\ITYaar\obj\Debug\ITYaar.csproj.AssemblyReference.cache
+C:\Users\azim\source\repos\ITYaar\ITYaar\obj\Debug\ITYaar.Form1.resources
+C:\Users\azim\source\repos\ITYaar\ITYaar\obj\Debug\ITYaar.Properties.Resources.resources
+C:\Users\azim\source\repos\ITYaar\ITYaar\obj\Debug\ITYaar.csproj.GenerateResource.cache
+C:\Users\azim\source\repos\ITYaar\ITYaar\obj\Debug\ITYaar.csproj.CoreCompileInputs.cache
+C:\Users\azim\source\repos\ITYaar\ITYaar\obj\Debug\ITYaar.exe
+C:\Users\azim\source\repos\ITYaar\ITYaar\obj\Debug\ITYaar.pdb
