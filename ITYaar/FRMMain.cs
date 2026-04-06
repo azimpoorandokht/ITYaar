@@ -135,6 +135,15 @@ namespace ITYaar
 				throw;
 			}
 		}
+		private void BTNLogin_Click(object sender, EventArgs e)
+		{
+
+			LoadMessages();
+			StartTimerLoadingMSG();
+			ReadyBox.Enabled = true;
+			BTNRefresh.Enabled = true;
+			BTNSend.Enabled = true;
+		}
 		private void BTNSend_Click(object sender, EventArgs e)
 		{
 			//DoLogEvent(runningMode, "Sending Message .");
@@ -150,15 +159,7 @@ namespace ITYaar
 		{
 			LoadMessages();
 		}
-		private void BTNLogin_Click(object sender, EventArgs e)
-		{
-			
-			LoadMessages();
-			StartTimerLoadingMSG();
-			ReadyBox.Enabled = true;
-			BTNRefresh.Enabled = true;
-			BTNSend.Enabled = true;
-		}
+		
 		private void ReadyBox_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
