@@ -243,14 +243,6 @@ namespace ITYaar
 			RTBChatBox.SelectionStart = RTBChatBox.Text.Length;
 			RTBChatBox.ScrollToCaret();
 		}
-		//private void messageBox_KeyDown(object sender, KeyEventArgs e)
-		//{
-		//	if (e.KeyCode == Keys.Enter)
-		//	{
-		//		SendMessage();
-		//		e.SuppressKeyPress = true;
-		//	}
-		//}
 		private void sendButton_Click(object sender, EventArgs e)
 		{
 			SendMessage();
@@ -464,11 +456,6 @@ namespace ITYaar
 			BTNRefresh.Enabled = false;
 			BTNSend.Enabled = false;
 			DoLogEvent(runningMode, "Timers Stoped.");
-		}
-
-		private void tabPage4_Click(object sender, EventArgs e)
-		{
-
 		}
 
 		string GetLocalIP()
