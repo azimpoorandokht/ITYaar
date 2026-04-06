@@ -7,13 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using System.ComponentModel;
-//using System.Data;
 using System.Data.OleDb;
-//using System.Data.OracleClient;
 using System.Diagnostics;
-//using System.Diagnostics.Eventing.Reader;
-//using System.Drawing;
 using System.IO;
 using System.Linq.Expressions;
 using System.Net.NetworkInformation;
@@ -22,8 +17,10 @@ using System.Net;
 using System.Reflection;
 using System.Threading;
 using static System.Windows.Forms.AxHost;
-/*این برنامه اصلی است در خصوص اپدیت اول باید نسخه آپدیت را چک کند و بروز کند و بعد نسخه خودش را چک کند و و اگر نسخش بروز نبود 
- * اپدیتور رو صدا کند
+/*
+ این برنامه اصلی است 
+در خصوص اپدیت اول باید نسخه برنامه بروزرسان را چک کند و آن را بروز کند
+ بعد نسخه خودش را چک کند و و اگر نسخش بروز نبود اپدیتور رو صدا کند
  */
 
 namespace ITYaar
