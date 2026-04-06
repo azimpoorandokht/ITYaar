@@ -239,7 +239,7 @@ namespace ITYaar
 			}
 
 			RTBChatBox.AppendText(msg + Environment.NewLine);
-			Thread.Sleep(50);
+			Thread.Sleep(1000);
 			RTBChatBox.SelectionStart = RTBChatBox.Text.Length;
 			RTBChatBox.ScrollToCaret();
 		}
@@ -456,6 +456,14 @@ namespace ITYaar
 				BTNRefresh.Enabled = true;
 				BTNSend.Enabled = true;
 			}
+		}
+
+		private void BTNTimersStop_Click(object sender, EventArgs e)
+		{
+			ReadyBox.Enabled = false;
+			BTNRefresh.Enabled = false;
+			BTNSend.Enabled = false;
+			DoLogEvent(runningMode, "Timers Stoped.");
 		}
 
 		string GetLocalIP()

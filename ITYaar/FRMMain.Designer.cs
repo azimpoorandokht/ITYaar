@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRMMain));
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.label3 = new System.Windows.Forms.Label();
@@ -284,6 +285,7 @@
 			this.BTNTimersStop.TabIndex = 16;
 			this.BTNTimersStop.Text = "خروج";
 			this.BTNTimersStop.UseVisualStyleBackColor = true;
+			this.BTNTimersStop.Click += new System.EventHandler(this.BTNTimersStop_Click);
 			// 
 			// FRMMain
 			// 
@@ -292,10 +294,12 @@
 			this.ClientSize = new System.Drawing.Size(1098, 645);
 			this.Controls.Add(this.LB);
 			this.Controls.Add(this.tabControl1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "FRMMain";
 			this.RightToLeftLayout = true;
-			this.Text = "Form1";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.Text = "-";
 			this.Load += new System.EventHandler(this.FRMMain_Load);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage4.ResumeLayout(false);
