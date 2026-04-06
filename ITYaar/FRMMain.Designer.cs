@@ -72,7 +72,7 @@
 			this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
 			this.tabControl1.RightToLeftLayout = true;
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(1098, 519);
+			this.tabControl1.Size = new System.Drawing.Size(1098, 435);
 			this.tabControl1.TabIndex = 7;
 			// 
 			// tabPage4
@@ -93,10 +93,11 @@
 			this.tabPage4.Location = new System.Drawing.Point(4, 25);
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(1090, 490);
+			this.tabPage4.Size = new System.Drawing.Size(1090, 406);
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = "استخبارات";
 			this.tabPage4.UseVisualStyleBackColor = true;
+			this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
 			// 
 			// label3
 			// 
@@ -147,7 +148,7 @@
 			// BTNRefresh
 			// 
 			this.BTNRefresh.Enabled = false;
-			this.BTNRefresh.Location = new System.Drawing.Point(8, 403);
+			this.BTNRefresh.Location = new System.Drawing.Point(8, 318);
 			this.BTNRefresh.Name = "BTNRefresh";
 			this.BTNRefresh.Size = new System.Drawing.Size(75, 76);
 			this.BTNRefresh.TabIndex = 9;
@@ -180,7 +181,7 @@
 			// BTNSend
 			// 
 			this.BTNSend.Enabled = false;
-			this.BTNSend.Location = new System.Drawing.Point(94, 403);
+			this.BTNSend.Location = new System.Drawing.Point(94, 318);
 			this.BTNSend.Name = "BTNSend";
 			this.BTNSend.Size = new System.Drawing.Size(101, 76);
 			this.BTNSend.TabIndex = 5;
@@ -191,7 +192,7 @@
 			// ReadyBox
 			// 
 			this.ReadyBox.Enabled = false;
-			this.ReadyBox.Location = new System.Drawing.Point(201, 406);
+			this.ReadyBox.Location = new System.Drawing.Point(201, 321);
 			this.ReadyBox.Name = "ReadyBox";
 			this.ReadyBox.Size = new System.Drawing.Size(881, 73);
 			this.ReadyBox.TabIndex = 4;
@@ -202,7 +203,7 @@
 			// 
 			this.RTBChatBox.Location = new System.Drawing.Point(8, 47);
 			this.RTBChatBox.Name = "RTBChatBox";
-			this.RTBChatBox.Size = new System.Drawing.Size(1074, 350);
+			this.RTBChatBox.Size = new System.Drawing.Size(1074, 265);
 			this.RTBChatBox.TabIndex = 3;
 			this.RTBChatBox.Text = "";
 			// 
@@ -267,7 +268,7 @@
 			// LB
 			// 
 			this.LB.FormattingEnabled = true;
-			this.LB.Location = new System.Drawing.Point(205, 521);
+			this.LB.Location = new System.Drawing.Point(205, 437);
 			this.LB.Name = "LB";
 			this.LB.Size = new System.Drawing.Size(881, 108);
 			this.LB.TabIndex = 8;
@@ -291,7 +292,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1098, 645);
+			this.ClientSize = new System.Drawing.Size(1098, 552);
 			this.Controls.Add(this.LB);
 			this.Controls.Add(this.tabControl1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
