@@ -138,7 +138,7 @@
 			// BTNRefresh
 			// 
 			this.BTNRefresh.Enabled = false;
-			this.BTNRefresh.Location = new System.Drawing.Point(13, 403);
+			this.BTNRefresh.Location = new System.Drawing.Point(8, 403);
 			this.BTNRefresh.Name = "BTNRefresh";
 			this.BTNRefresh.Size = new System.Drawing.Size(75, 76);
 			this.BTNRefresh.TabIndex = 9;
