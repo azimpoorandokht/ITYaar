@@ -49,7 +49,7 @@ namespace ITYaar
 		public string Remote_Update_Path;
 		public string Target1;
 		public enumRunningMode runningMode = enumRunningMode.NotSet;
-		public string myLogfile = "Tahvilyaar.log.txt";
+		public string myLogfile = "ITYaar.log.txt";
 		public Dictionary<string, string> myConfigurationDictionary, remoteConfigDictionary;
 		public enum enumRunningMode // بر نامه دو حالت اجرا دارد یکی در لبتاب من و در محیط آزمایشگاهی و دیگری در محیط واقعی
 		{
@@ -73,7 +73,7 @@ namespace ITYaar
 		}
 
 		//Form events
-		private void Tahvilyaar_Load(object sender, EventArgs e)
+		private void FRMMain_Load(object sender, EventArgs e)
 		{
 			try
 			{
@@ -243,14 +243,14 @@ namespace ITYaar
 			RTBChatBox.SelectionStart = RTBChatBox.Text.Length;
 			RTBChatBox.ScrollToCaret();
 		}
-		private void messageBox_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Enter)
-			{
-				SendMessage();
-				e.SuppressKeyPress = true;
-			}
-		}
+		//private void messageBox_KeyDown(object sender, KeyEventArgs e)
+		//{
+		//	if (e.KeyCode == Keys.Enter)
+		//	{
+		//		SendMessage();
+		//		e.SuppressKeyPress = true;
+		//	}
+		//}
 		private void sendButton_Click(object sender, EventArgs e)
 		{
 			SendMessage();
@@ -306,7 +306,7 @@ namespace ITYaar
 		}
 		private void BTNLogin_Click(object sender, EventArgs e)
 		{
-			//myKey = TXTKey.Text.Trim();
+			
 			LoadMessages();
 			StartTimerLoadingMSG();
 			ReadyBox.Enabled = true;
@@ -445,6 +445,19 @@ namespace ITYaar
 				throw;
 			}
 		}
+
+		private void TXTUserName_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				LoadMessages();
+				StartTimerLoadingMSG();
+				ReadyBox.Enabled = true;
+				BTNRefresh.Enabled = true;
+				BTNSend.Enabled = true;
+			}
+		}
+
 		string GetLocalIP()
 		{
 			string ip = "";

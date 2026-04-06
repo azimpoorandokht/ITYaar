@@ -50,6 +50,7 @@
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.LB = new System.Windows.Forms.ListBox();
 			this.TimerLoadingMSG = new System.Windows.Forms.Timer(this.components);
+			this.BTNTimersStop = new System.Windows.Forms.Button();
 			this.tabControl1.SuspendLayout();
 			this.tabPage4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.NUDTalar)).BeginInit();
@@ -70,11 +71,12 @@
 			this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
 			this.tabControl1.RightToLeftLayout = true;
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(1170, 519);
+			this.tabControl1.Size = new System.Drawing.Size(1098, 519);
 			this.tabControl1.TabIndex = 7;
 			// 
 			// tabPage4
 			// 
+			this.tabPage4.Controls.Add(this.BTNTimersStop);
 			this.tabPage4.Controls.Add(this.label3);
 			this.tabPage4.Controls.Add(this.TXTKey);
 			this.tabPage4.Controls.Add(this.BTNLogin);
@@ -90,7 +92,7 @@
 			this.tabPage4.Location = new System.Drawing.Point(4, 25);
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(1162, 490);
+			this.tabPage4.Size = new System.Drawing.Size(1090, 490);
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = "استخبارات";
 			this.tabPage4.UseVisualStyleBackColor = true;
@@ -98,7 +100,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(1076, 15);
+			this.label3.Location = new System.Drawing.Point(1007, 15);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(78, 17);
 			this.label3.TabIndex = 13;
@@ -106,16 +108,17 @@
 			// 
 			// TXTKey
 			// 
-			this.TXTKey.Location = new System.Drawing.Point(557, 11);
+			this.TXTKey.Location = new System.Drawing.Point(557, 14);
 			this.TXTKey.Name = "TXTKey";
 			this.TXTKey.Size = new System.Drawing.Size(223, 24);
 			this.TXTKey.TabIndex = 0;
+			this.TXTKey.Text = "My Key";
 			// 
 			// BTNLogin
 			// 
-			this.BTNLogin.Location = new System.Drawing.Point(15, 11);
+			this.BTNLogin.Location = new System.Drawing.Point(157, 11);
 			this.BTNLogin.Name = "BTNLogin";
-			this.BTNLogin.Size = new System.Drawing.Size(120, 24);
+			this.BTNLogin.Size = new System.Drawing.Size(92, 30);
 			this.BTNLogin.TabIndex = 12;
 			this.BTNLogin.Text = "ورود";
 			this.BTNLogin.UseVisualStyleBackColor = true;
@@ -124,7 +127,7 @@
 			// username
 			// 
 			this.username.AutoSize = true;
-			this.username.Location = new System.Drawing.Point(455, 15);
+			this.username.Location = new System.Drawing.Point(455, 18);
 			this.username.Name = "username";
 			this.username.Size = new System.Drawing.Size(59, 17);
 			this.username.TabIndex = 11;
@@ -133,10 +136,12 @@
 			// TXTUserName
 			// 
 			this.TXTUserName.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-			this.TXTUserName.Location = new System.Drawing.Point(216, 11);
+			this.TXTUserName.Location = new System.Drawing.Point(255, 14);
 			this.TXTUserName.Name = "TXTUserName";
-			this.TXTUserName.Size = new System.Drawing.Size(233, 25);
+			this.TXTUserName.Size = new System.Drawing.Size(194, 25);
 			this.TXTUserName.TabIndex = 10;
+			this.TXTUserName.Text = "My name";
+			this.TXTUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TXTUserName_KeyDown);
 			// 
 			// BTNRefresh
 			// 
@@ -147,11 +152,12 @@
 			this.BTNRefresh.TabIndex = 9;
 			this.BTNRefresh.Text = "رفرش";
 			this.BTNRefresh.UseVisualStyleBackColor = true;
+			this.BTNRefresh.Click += new System.EventHandler(this.Refresh_Click);
 			// 
 			// NUDTalar
 			// 
 			this.NUDTalar.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-			this.NUDTalar.Location = new System.Drawing.Point(950, 11);
+			this.NUDTalar.Location = new System.Drawing.Point(881, 14);
 			this.NUDTalar.Name = "NUDTalar";
 			this.NUDTalar.Size = new System.Drawing.Size(120, 25);
 			this.NUDTalar.TabIndex = 7;
@@ -179,28 +185,30 @@
 			this.BTNSend.TabIndex = 5;
 			this.BTNSend.Text = "ارسال";
 			this.BTNSend.UseVisualStyleBackColor = true;
+			this.BTNSend.Click += new System.EventHandler(this.sendButton_Click);
 			// 
 			// ReadyBox
 			// 
 			this.ReadyBox.Enabled = false;
 			this.ReadyBox.Location = new System.Drawing.Point(201, 406);
 			this.ReadyBox.Name = "ReadyBox";
-			this.ReadyBox.Size = new System.Drawing.Size(955, 73);
+			this.ReadyBox.Size = new System.Drawing.Size(881, 73);
 			this.ReadyBox.TabIndex = 4;
 			this.ReadyBox.Text = "";
+			this.ReadyBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReadyBox_KeyDown);
 			// 
 			// RTBChatBox
 			// 
 			this.RTBChatBox.Location = new System.Drawing.Point(8, 47);
 			this.RTBChatBox.Name = "RTBChatBox";
-			this.RTBChatBox.Size = new System.Drawing.Size(1146, 350);
+			this.RTBChatBox.Size = new System.Drawing.Size(1074, 350);
 			this.RTBChatBox.TabIndex = 3;
 			this.RTBChatBox.Text = "";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(789, 15);
+			this.label1.Location = new System.Drawing.Point(789, 18);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(38, 17);
 			this.label1.TabIndex = 1;
@@ -258,26 +266,37 @@
 			// LB
 			// 
 			this.LB.FormattingEnabled = true;
-			this.LB.Location = new System.Drawing.Point(7, 521);
+			this.LB.Location = new System.Drawing.Point(205, 521);
 			this.LB.Name = "LB";
-			this.LB.Size = new System.Drawing.Size(1159, 108);
+			this.LB.Size = new System.Drawing.Size(881, 108);
 			this.LB.TabIndex = 8;
 			// 
 			// TimerLoadingMSG
 			// 
 			this.TimerLoadingMSG.Interval = 4000;
+			this.TimerLoadingMSG.Tick += new System.EventHandler(this.TimerLoadingMSG_Tick);
+			// 
+			// BTNTimersStop
+			// 
+			this.BTNTimersStop.Location = new System.Drawing.Point(15, 11);
+			this.BTNTimersStop.Name = "BTNTimersStop";
+			this.BTNTimersStop.Size = new System.Drawing.Size(88, 30);
+			this.BTNTimersStop.TabIndex = 16;
+			this.BTNTimersStop.Text = "خروج";
+			this.BTNTimersStop.UseVisualStyleBackColor = true;
 			// 
 			// FRMMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1170, 645);
+			this.ClientSize = new System.Drawing.Size(1098, 645);
 			this.Controls.Add(this.LB);
 			this.Controls.Add(this.tabControl1);
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "FRMMain";
 			this.RightToLeftLayout = true;
 			this.Text = "Form1";
+			this.Load += new System.EventHandler(this.FRMMain_Load);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage4.ResumeLayout(false);
 			this.tabPage4.PerformLayout();
@@ -311,6 +330,7 @@
 		private System.Windows.Forms.TabPage tabPage3;
 		private System.Windows.Forms.ListBox LB;
 		private System.Windows.Forms.Timer TimerLoadingMSG;
+		private System.Windows.Forms.Button BTNTimersStop;
 	}
 }
 
