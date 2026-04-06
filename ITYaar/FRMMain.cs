@@ -416,7 +416,7 @@ namespace ITYaar
 			}
 			else
 			{
-				username = TXTUserName.Text.Trim() + " " + myIpAddress;
+				username = myIpAddress +" " + TXTUserName.Text.Trim() ;
 			}
 			//string username = TXTUserName.Text.Trim() + new Random().Next(100, 999);
 			
@@ -428,11 +428,11 @@ namespace ITYaar
 			if (string.IsNullOrWhiteSpace(ReadyBox.Text))
 			{
 				//return;
-				message = username + ": " + "Empty";
+				message = username + ": \n" + "Empty";
 			}
 			else
 			{
-				message = username + ": " + ReadyBox.Text;
+				message = username + ": \n" + ReadyBox.Text;
 
 			}
 			///// رمز گذاری
