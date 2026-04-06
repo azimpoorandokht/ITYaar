@@ -22,7 +22,14 @@ using static System.Windows.Forms.AxHost;
 در خصوص اپدیت اول باید نسخه برنامه بروزرسان را چک کند و آن را بروز کند
  بعد نسخه خودش را چک کند و و اگر نسخش بروز نبود اپدیتور رو صدا کند
  */
+/*
+ کارهایی که باید بکنی
+تنظیمات برای فوت صفحه بزار
+برای بروز رسانی خودش بتون برنامه بروز رسان رو بگیره یا آچدیت کنه
+حذف چت های روز های قبل
 
+ 
+ */
 namespace ITYaar
 {
     public partial class FRMMain : Form
@@ -118,7 +125,7 @@ namespace ITYaar
 					//DoLogEvent(runningMode, "RealEnv_Remote_Update_Location = " + Remote_Update_Path.ToString());
 					DoLogEvent(runningMode, "myLogfile = " + myLogfile.ToString());
 					DoLogEvent(runningMode, "My version is " + myVersion);
-					DoLogEvent(runningMode, "Chat folder= " + chatFolder);
+					//DoLogEvent(runningMode, "Chat folder= " + chatFolder);
 					DoLogEvent(runningMode, "My Ip Adress= " + myIpAddress);
 				}
 				///////////////////   اول باید نسخه آپدیتور چک بشه اگر نیاز بود بروز رسانی کنه
@@ -313,11 +320,20 @@ namespace ITYaar
 		}
 		private void BTNTimersStop_Click(object sender, EventArgs e)
 		{
-			ReadyBox.Enabled = false;
-			BTNRefresh.Enabled = false;
-			BTNSend.Enabled = false;
-			DoLogEvent(runningMode, "Timers Stoped.");
-		}
+			seenFiles.Clear();
+			RTBChatBox.Clear();
+            DoLogEvent(runningMode, "New Key Has been set...");
+            ReadyBox.Enabled = true;
+            BTNRefresh.Enabled = true;
+            BTNSend.Enabled = true;
+            LoadMessages();
+            StartTimerLoadingMSG();
+            //ReadyBox.Enabled = false;
+            //BTNRefresh.Enabled = false;
+            //BTNSend.Enabled = false;
+            //DoLogEvent(runningMode, "Timers Stoped.");
+
+        }
 		///////////////////////////////////////////////////////////////////////// Function
 		private void killMeNow()
 		{
