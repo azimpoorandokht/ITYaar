@@ -36,7 +36,7 @@
 			this.username = new System.Windows.Forms.Label();
 			this.TXTUserName = new System.Windows.Forms.TextBox();
 			this.BTNRefresh = new System.Windows.Forms.Button();
-			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+			this.NUDTalar = new System.Windows.Forms.NumericUpDown();
 			this.label2 = new System.Windows.Forms.Label();
 			this.BTNSend = new System.Windows.Forms.Button();
 			this.ReadyBox = new System.Windows.Forms.RichTextBox();
@@ -47,9 +47,10 @@
 			this.btnKillSession = new System.Windows.Forms.Button();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.LB = new System.Windows.Forms.ListBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPage4.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.NUDTalar)).BeginInit();
 			this.tabPage1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
@@ -78,7 +79,7 @@
 			this.tabPage4.Controls.Add(this.username);
 			this.tabPage4.Controls.Add(this.TXTUserName);
 			this.tabPage4.Controls.Add(this.BTNRefresh);
-			this.tabPage4.Controls.Add(this.numericUpDown1);
+			this.tabPage4.Controls.Add(this.NUDTalar);
 			this.tabPage4.Controls.Add(this.label2);
 			this.tabPage4.Controls.Add(this.BTNSend);
 			this.tabPage4.Controls.Add(this.ReadyBox);
@@ -144,14 +145,14 @@
 			this.BTNRefresh.Text = "رفرش";
 			this.BTNRefresh.UseVisualStyleBackColor = true;
 			// 
-			// numericUpDown1
+			// NUDTalar
 			// 
-			this.numericUpDown1.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-			this.numericUpDown1.Location = new System.Drawing.Point(950, 11);
-			this.numericUpDown1.Name = "numericUpDown1";
-			this.numericUpDown1.Size = new System.Drawing.Size(120, 25);
-			this.numericUpDown1.TabIndex = 7;
-			this.numericUpDown1.Value = new decimal(new int[] {
+			this.NUDTalar.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+			this.NUDTalar.Location = new System.Drawing.Point(950, 11);
+			this.NUDTalar.Name = "NUDTalar";
+			this.NUDTalar.Size = new System.Drawing.Size(120, 25);
+			this.NUDTalar.TabIndex = 7;
+			this.NUDTalar.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -181,7 +182,7 @@
 			this.ReadyBox.Enabled = false;
 			this.ReadyBox.Location = new System.Drawing.Point(201, 406);
 			this.ReadyBox.Name = "ReadyBox";
-			this.ReadyBox.Size = new System.Drawing.Size(1101, 73);
+			this.ReadyBox.Size = new System.Drawing.Size(955, 73);
 			this.ReadyBox.TabIndex = 4;
 			this.ReadyBox.Text = "";
 			// 
@@ -189,7 +190,7 @@
 			// 
 			this.RTBChatBox.Location = new System.Drawing.Point(8, 47);
 			this.RTBChatBox.Name = "RTBChatBox";
-			this.RTBChatBox.Size = new System.Drawing.Size(1298, 350);
+			this.RTBChatBox.Size = new System.Drawing.Size(1146, 350);
 			this.RTBChatBox.TabIndex = 3;
 			this.RTBChatBox.Text = "";
 			// 
@@ -251,11 +252,20 @@
 			this.tabPage3.Text = "گزارشات";
 			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
+			// LB
+			// 
+			this.LB.FormattingEnabled = true;
+			this.LB.Location = new System.Drawing.Point(7, 521);
+			this.LB.Name = "LB";
+			this.LB.Size = new System.Drawing.Size(1159, 108);
+			this.LB.TabIndex = 8;
+			// 
 			// FRMMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1170, 615);
+			this.ClientSize = new System.Drawing.Size(1170, 645);
+			this.Controls.Add(this.LB);
 			this.Controls.Add(this.tabControl1);
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "FRMMain";
@@ -264,7 +274,7 @@
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage4.ResumeLayout(false);
 			this.tabPage4.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.NUDTalar)).EndInit();
 			this.tabPage1.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
 			this.ResumeLayout(false);
@@ -281,7 +291,7 @@
 		private System.Windows.Forms.Label username;
 		private System.Windows.Forms.TextBox TXTUserName;
 		private System.Windows.Forms.Button BTNRefresh;
-		private System.Windows.Forms.NumericUpDown numericUpDown1;
+		private System.Windows.Forms.NumericUpDown NUDTalar;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button BTNSend;
 		private System.Windows.Forms.RichTextBox ReadyBox;
@@ -292,6 +302,7 @@
 		private System.Windows.Forms.Button btnKillSession;
 		private System.Windows.Forms.TabPage tabPage2;
 		private System.Windows.Forms.TabPage tabPage3;
+		private System.Windows.Forms.ListBox LB;
 	}
 }
 
