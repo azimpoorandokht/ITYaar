@@ -41,7 +41,6 @@ namespace ITYaar
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 		public string myFileName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);
 		public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
-																									//public string targetDirectory = @"C:\Program Files\Tahvilyaar";
 		public string local_Update_Path;
 		public string Remote_Update_Path;
 		public string Target1;
@@ -59,7 +58,7 @@ namespace ITYaar
 		private CodeDecode chrobj = new CodeDecode();
 		public string chatFolder = "";
 		public DateTime lastCheck = DateTime.MinValue;
-		//public string myKey = "";
+		
 		#endregion
 		public enumRunningMode GetRunnigMode()
 		{
@@ -68,8 +67,7 @@ namespace ITYaar
 			// 1 = محیط واقعی
 			return enumRunningMode.Develop_Mode;
 		}
-
-		//Form events
+		/////////////////////////////////////////////////////////////////////Form events
 		private void FRMMain_Load(object sender, EventArgs e)
 		{
 			try
@@ -137,57 +135,6 @@ namespace ITYaar
 				throw;
 			}
 		}
-		void SendMessage()
-		{
-			////////////////// اول چک کن این متغیر توی تنظیمات هست یا نه
-			//RoomsAddress
-			/////////////////// اسمش اینجا ساخته بشه با تاریخ و ساعت و و کاربر و ای پی 
-			string username = TXTUserName.Text.Trim();
-			if (TXTUserName.Text == "")
-			{
-				username = myIpAddress;
-			}
-			else
-			{
-				username = TXTUserName.Text.Trim() + " " + myIpAddress;
-			}
-			//string username = TXTUserName.Text.Trim() + new Random().Next(100, 999);
-			HashSet<string> seenFiles = new HashSet<string>();
-
-			// بعد رمز بشه بر توی یه فایل توی سرور بشینه
-
-			// اینجا یه فایل باید ایجاد کنیم توی  216 پابلیک
-			string message = "خالی";
-			if (string.IsNullOrWhiteSpace(ReadyBox.Text))
-			{
-				//return;
-				message = username + ": " + "Empty";
-			}
-			else
-			{
-				message = username + ": " + ReadyBox.Text;
-
-			}
-			///// رمز گذاری
-			message = chrobj.xxMixedWithKey(chrobj.xxAzTabeHaft(message, 10), TXTKey.Text.Trim());
-
-			//// اینجا باید پیام خودم به باکس اضافه شود 
-			string fname = DateTime.Now.ToString("yyyyMMdd_HHmmss_fff") + "_" + username + ".txt";
-
-			try
-			{
-				//    DoLogEvent(runningMode, "Sending...");
-				File.WriteAllText(Path.Combine(chatFolder, fname), message);
-				DoLogEvent(runningMode, "Sent...");
-			}
-			catch (Exception ex)
-			{
-				DoLogEvent(runningMode, "Error: Write error."+ex.Message);
-				//MessageBox.Show("خطا در نوشتن پیام:\n" + ex.Message);
-			}
-
-			ReadyBox.Clear();
-		}
 		private void BTNSend_Click(object sender, EventArgs e)
 		{
 			//DoLogEvent(runningMode, "Sending Message .");
@@ -195,103 +142,13 @@ namespace ITYaar
 			SendMessage();
 			LoadMessages();
 		}
-		void LoadMessages()
-		{
-			/////////// بهتره اول فایل ها رو از آخرین فایلی که توی کش هست به بعد بیارم توی کش
-			try
-			{
-				if (!Directory.Exists(chatFolder))
-					return;
-
-				// فقط فایل‌هایی که جدیدتر از آخرین بررسی هستند
-				var newFiles = System.IO.Directory
-					.EnumerateFiles(chatFolder, "*.txt")
-					.Where(f => File.GetLastWriteTime(f) > lastCheck)
-					.OrderBy(f => f)
-					.ToList();
-
-				foreach (var file in newFiles)
-				{
-					string msg = File.ReadAllText(file);
-					msg = chrobj.yyMixedWithKey(chrobj.yyAzTabeHaft(msg, 10), TXTKey.Text.Trim());
-
-					AddMessageToUI(msg);
-				}
-
-				lastCheck = DateTime.Now; // ثبت زمان آخرین بررسی
-			}
-			catch (Exception ex)
-			{
-				// در نسخه SMB بهتره بی‌صدا خطا رو رد کنیم
-				DoLogEvent(runningMode, "Error: " + ex.Message);
-				//AddLog(runningMode + "Error: " + ex.Message);
-			}
-		}
-		void AddMessageToUI(string msg)
-		{
-			if (InvokeRequired)
-			{
-				Invoke(new Action<string>(AddMessageToUI), msg);
-				return;
-			}
-
-			RTBChatBox.AppendText(msg + Environment.NewLine);
-			Thread.Sleep(50);
-			RTBChatBox.SelectionStart = RTBChatBox.Text.Length;
-			RTBChatBox.ScrollToCaret();
-		}
 		private void sendButton_Click(object sender, EventArgs e)
 		{
 			SendMessage();
 		}
-		private Dictionary<string, string> retriveMyConfiguration() //if (File.Exists("GlobalValuesText.txt"))
-		{
-			try
-			{
-				string[] lines = File.ReadAllLines("GlobalValuesText.txt");
-				return lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
-			}
-			catch (Exception ee)
-			{
-				var st = new StackTrace();
-				var me = st.GetFrame(0).GetMethod().Name;
-				DoLogEvent(runningMode, "ERROR: " + me + " : " + ee.Message);
-
-				throw;
-			}
-		}
 		private void Refresh_Click(object sender, EventArgs e)
 		{
 			LoadMessages();
-		}
-
-		private void DoLogEvent(enumRunningMode myRunningMode, string massage)
-		{
-			try
-			{
-				Thread.Sleep(100);
-
-				var fullMes = DateTime.Now + " : " + massage + Environment.NewLine;
-				if (myRunningMode == enumRunningMode.Develop_Mode) // محیط اجرای برنامه نویس
-				{
-					// بعدا ممکنه بخوای اینو تغییر بدی
-				}
-				else ///محید اجرای واقعی
-				{
-					string logfile = Path.Combine(myDirectory, myLogfile);
-					if (!File.Exists(logfile))
-					{
-						File.Create(logfile);
-					}
-					System.IO.File.AppendAllText(logfile, fullMes);
-				}
-				AddLog(fullMes);
-			}
-			catch (Exception ee)
-			{
-				MessageBox.Show(" لاگ آپدیت : مشکل دسترسی به مسیر پیش فرض \n" + ee.Message);
-				//killMeNow();
-			}
 		}
 		private void BTNLogin_Click(object sender, EventArgs e)
 		{
@@ -302,14 +159,6 @@ namespace ITYaar
 			BTNRefresh.Enabled = true;
 			BTNSend.Enabled = true;
 		}
-		private void StartTimerLoadingMSG()
-		{
-			TimerLoadingMSG.Enabled = true;
-			//TimerLoadingMSG.Tick += (object s, EventArgs e1) => LoadMessages();
-			TimerLoadingMSG.Start();
-			DoLogEvent(runningMode, "TimerLoadingMSG Started.");
-
-		}
 		private void ReadyBox_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
@@ -317,27 +166,6 @@ namespace ITYaar
 				SendMessage();
 				e.SuppressKeyPress = true;
 				LoadMessages();
-			}
-		}
-		private void killMeNow()
-		{
-			if (!programmingMode)
-			{
-				if (System.Windows.Forms.Application.MessageLoop)
-				{
-					// WinForms app
-					System.Windows.Forms.Application.Exit();
-				}
-				else
-				{
-					// Console app
-					System.Environment.Exit(1);
-				}
-			}
-			else //programmingMode=true
-			{
-				AddLog("KillMeNow:programmingMode=" + programmingMode.ToString());
-
 			}
 		}
 		private void btnKillSession_Click(object sender, EventArgs e)
@@ -434,7 +262,42 @@ namespace ITYaar
 				throw;
 			}
 		}
+		private void StartTimerLoadingMSG()
+		{
+			TimerLoadingMSG.Enabled = true;
+			//TimerLoadingMSG.Tick += (object s, EventArgs e1) => LoadMessages();
+			TimerLoadingMSG.Start();
+			DoLogEvent(runningMode, "TimerLoadingMSG Started.");
 
+		}
+		private void DoLogEvent(enumRunningMode myRunningMode, string massage)
+		{
+			try
+			{
+				Thread.Sleep(100);
+
+				var fullMes = DateTime.Now + " : " + massage + Environment.NewLine;
+				if (myRunningMode == enumRunningMode.Develop_Mode) // محیط اجرای برنامه نویس
+				{
+					// بعدا ممکنه بخوای اینو تغییر بدی
+				}
+				else ///محید اجرای واقعی
+				{
+					string logfile = Path.Combine(myDirectory, myLogfile);
+					if (!File.Exists(logfile))
+					{
+						File.Create(logfile);
+					}
+					System.IO.File.AppendAllText(logfile, fullMes);
+				}
+				AddLog(fullMes);
+			}
+			catch (Exception ee)
+			{
+				MessageBox.Show(" لاگ آپدیت : مشکل دسترسی به مسیر پیش فرض \n" + ee.Message);
+				//killMeNow();
+			}
+		}
 		private void TXTUserName_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
@@ -446,7 +309,6 @@ namespace ITYaar
 				BTNSend.Enabled = true;
 			}
 		}
-
 		private void BTNTimersStop_Click(object sender, EventArgs e)
 		{
 			ReadyBox.Enabled = false;
@@ -454,7 +316,28 @@ namespace ITYaar
 			BTNSend.Enabled = false;
 			DoLogEvent(runningMode, "Timers Stoped.");
 		}
+		///////////////////////////////////////////////////////////////////////// Function
+		private void killMeNow()
+		{
+			if (!programmingMode)
+			{
+				if (System.Windows.Forms.Application.MessageLoop)
+				{
+					// WinForms app
+					System.Windows.Forms.Application.Exit();
+				}
+				else
+				{
+					// Console app
+					System.Environment.Exit(1);
+				}
+			}
+			else //programmingMode=true
+			{
+				AddLog("KillMeNow:programmingMode=" + programmingMode.ToString());
 
+			}
+		}
 		string GetLocalIP()
 		{
 			string ip = "";
@@ -471,6 +354,118 @@ namespace ITYaar
 			}
 
 			return ip;
+		}
+		private Dictionary<string, string> retriveMyConfiguration() //if (File.Exists("GlobalValuesText.txt"))
+		{
+			try
+			{
+				string[] lines = File.ReadAllLines("GlobalValuesText.txt");
+				return lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
+			}
+			catch (Exception ee)
+			{
+				var st = new StackTrace();
+				var me = st.GetFrame(0).GetMethod().Name;
+				DoLogEvent(runningMode, "ERROR: " + me + " : " + ee.Message);
+
+				throw;
+			}
+		}
+		void LoadMessages()
+		{
+			/////////// بهتره اول فایل ها رو از آخرین فایلی که توی کش هست به بعد بیارم توی کش
+			try
+			{
+				if (!Directory.Exists(chatFolder))
+					return;
+
+				// فقط فایل‌هایی که جدیدتر از آخرین بررسی هستند
+				var newFiles = System.IO.Directory
+					.EnumerateFiles(chatFolder, "*.txt")
+					.Where(f => File.GetLastWriteTime(f) > lastCheck)
+					.OrderBy(f => f)
+					.ToList();
+
+				foreach (var file in newFiles)
+				{
+					string msg = File.ReadAllText(file);
+					msg = chrobj.yyMixedWithKey(chrobj.yyAzTabeHaft(msg, 10), TXTKey.Text.Trim());
+
+					AddMessageToUI(msg);
+				}
+
+				lastCheck = DateTime.Now; // ثبت زمان آخرین بررسی
+			}
+			catch (Exception ex)
+			{
+				// در نسخه SMB بهتره بی‌صدا خطا رو رد کنیم
+				DoLogEvent(runningMode, "Error: " + ex.Message);
+				//AddLog(runningMode + "Error: " + ex.Message);
+			}
+		}
+		void SendMessage()
+		{
+			////////////////// اول چک کن این متغیر توی تنظیمات هست یا نه
+			//RoomsAddress
+			/////////////////// اسمش اینجا ساخته بشه با تاریخ و ساعت و و کاربر و ای پی 
+			string username = TXTUserName.Text.Trim();
+			if (TXTUserName.Text == "")
+			{
+				username = myIpAddress;
+			}
+			else
+			{
+				username = TXTUserName.Text.Trim() + " " + myIpAddress;
+			}
+			//string username = TXTUserName.Text.Trim() + new Random().Next(100, 999);
+			HashSet<string> seenFiles = new HashSet<string>();
+
+			// بعد رمز بشه بر توی یه فایل توی سرور بشینه
+
+			// اینجا یه فایل باید ایجاد کنیم توی  216 پابلیک
+			string message = "خالی";
+			if (string.IsNullOrWhiteSpace(ReadyBox.Text))
+			{
+				//return;
+				message = username + ": " + "Empty";
+			}
+			else
+			{
+				message = username + ": " + ReadyBox.Text;
+
+			}
+			///// رمز گذاری
+			message = chrobj.xxMixedWithKey(chrobj.xxAzTabeHaft(message, 10), TXTKey.Text.Trim());
+
+			//// اینجا باید پیام خودم به باکس اضافه شود 
+			string fname = DateTime.Now.ToString("yyyyMMdd_HHmmss_fff") + "_" + username + ".txt";
+
+			try
+			{
+				//    DoLogEvent(runningMode, "Sending...");
+				File.WriteAllText(Path.Combine(chatFolder, fname), message);
+				DoLogEvent(runningMode, "Sent...");
+			}
+			catch (Exception ex)
+			{
+				DoLogEvent(runningMode, "Error: Write error." + ex.Message);
+				//MessageBox.Show("خطا در نوشتن پیام:\n" + ex.Message);
+			}
+
+			ReadyBox.Clear();
+		}
+		void AddMessageToUI(string msg)
+		{
+			if (InvokeRequired)
+			{
+				Invoke(new Action<string>(AddMessageToUI), msg);
+				return;
+			}
+
+			RTBChatBox.AppendText(msg + Environment.NewLine);
+			Thread.Sleep(50);
+			RTBChatBox.SelectionStart = RTBChatBox.Text.Length;
+			RTBChatBox.ScrollToCaret();
 		}
 	}
 
