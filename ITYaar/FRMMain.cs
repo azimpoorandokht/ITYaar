@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ITYaar
 {
-    public partial class Form1 : Form
+    public partial class FRMMain : Form
     {
-        public Form1()
+        public FRMMain()
         {
             InitializeComponent();
         }
