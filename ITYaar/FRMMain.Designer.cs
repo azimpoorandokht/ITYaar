@@ -42,7 +42,6 @@
 			this.TXTUserName = new System.Windows.Forms.TextBox();
 			this.ReadyBox = new System.Windows.Forms.RichTextBox();
 			this.RTBChatBox = new System.Windows.Forms.RichTextBox();
-			this.BTNTimersStop = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.BTNLogin = new System.Windows.Forms.Button();
 			this.username = new System.Windows.Forms.Label();
@@ -57,6 +56,8 @@
 			this.راهنماToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.دربارهبرنامهToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.BTNCleanOldMessages = new System.Windows.Forms.Button();
+			this.BTNUpdate = new System.Windows.Forms.Button();
+			this.نسخجدیدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabPage1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tabPage4.SuspendLayout();
@@ -111,7 +112,7 @@
 			// groupBox1
 			// 
 			this.groupBox1.Controls.Add(this.btnKillSession);
-			this.groupBox1.Location = new System.Drawing.Point(984, 6);
+			this.groupBox1.Location = new System.Drawing.Point(760, 6);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(322, 358);
 			this.groupBox1.TabIndex = 6;
@@ -129,11 +130,11 @@
 			// 
 			// tabPage4
 			// 
+			this.tabPage4.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
 			this.tabPage4.Controls.Add(this.TXTKey);
 			this.tabPage4.Controls.Add(this.TXTUserName);
 			this.tabPage4.Controls.Add(this.ReadyBox);
 			this.tabPage4.Controls.Add(this.RTBChatBox);
-			this.tabPage4.Controls.Add(this.BTNTimersStop);
 			this.tabPage4.Controls.Add(this.label3);
 			this.tabPage4.Controls.Add(this.BTNLogin);
 			this.tabPage4.Controls.Add(this.username);
@@ -148,7 +149,6 @@
 			this.tabPage4.Size = new System.Drawing.Size(1090, 406);
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = "استخبارات";
-			this.tabPage4.UseVisualStyleBackColor = true;
 			// 
 			// TXTKey
 			// 
@@ -185,16 +185,6 @@
 			this.RTBChatBox.Size = new System.Drawing.Size(1074, 265);
 			this.RTBChatBox.TabIndex = 3;
 			this.RTBChatBox.Text = "";
-			// 
-			// BTNTimersStop
-			// 
-			this.BTNTimersStop.Location = new System.Drawing.Point(8, 11);
-			this.BTNTimersStop.Name = "BTNTimersStop";
-			this.BTNTimersStop.Size = new System.Drawing.Size(153, 30);
-			this.BTNTimersStop.TabIndex = 16;
-			this.BTNTimersStop.Text = "اعمال کلید جدید";
-			this.BTNTimersStop.UseVisualStyleBackColor = true;
-			this.BTNTimersStop.Click += new System.EventHandler(this.BTNTimersStop_Click);
 			// 
 			// label3
 			// 
@@ -292,6 +282,7 @@
 			this.tabControl1.RightToLeftLayout = true;
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(1098, 435);
+			this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
 			this.tabControl1.TabIndex = 7;
 			// 
 			// menuStrip1
@@ -309,7 +300,8 @@
 			// 
 			this.راهنماToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.راهنماToolStripMenuItem1,
-            this.دربارهبرنامهToolStripMenuItem});
+            this.دربارهبرنامهToolStripMenuItem,
+            this.نسخجدیدToolStripMenuItem});
 			this.راهنماToolStripMenuItem.Name = "راهنماToolStripMenuItem";
 			this.راهنماToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
 			this.راهنماToolStripMenuItem.Text = "اطلاعات";
@@ -318,19 +310,18 @@
 			// راهنماToolStripMenuItem1
 			// 
 			this.راهنماToolStripMenuItem1.Name = "راهنماToolStripMenuItem1";
-			this.راهنماToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
+			this.راهنماToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
 			this.راهنماToolStripMenuItem1.Text = "راهنما";
 			// 
 			// دربارهبرنامهToolStripMenuItem
 			// 
 			this.دربارهبرنامهToolStripMenuItem.Name = "دربارهبرنامهToolStripMenuItem";
-			this.دربارهبرنامهToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+			this.دربارهبرنامهToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.دربارهبرنامهToolStripMenuItem.Text = "درباره برنامه";
 			this.دربارهبرنامهToolStripMenuItem.Click += new System.EventHandler(this.دربارهبرنامهToolStripMenuItem_Click);
 			// 
 			// BTNCleanOldMessages
 			// 
-			this.BTNCleanOldMessages.Enabled = false;
 			this.BTNCleanOldMessages.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
 			this.BTNCleanOldMessages.Location = new System.Drawing.Point(12, 465);
 			this.BTNCleanOldMessages.Name = "BTNCleanOldMessages";
@@ -340,12 +331,29 @@
 			this.BTNCleanOldMessages.UseVisualStyleBackColor = true;
 			this.BTNCleanOldMessages.Click += new System.EventHandler(this.BTNCleanOldMessages_Click);
 			// 
+			// BTNUpdate
+			// 
+			this.BTNUpdate.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+			this.BTNUpdate.Location = new System.Drawing.Point(12, 504);
+			this.BTNUpdate.Name = "BTNUpdate";
+			this.BTNUpdate.Size = new System.Drawing.Size(187, 33);
+			this.BTNUpdate.TabIndex = 18;
+			this.BTNUpdate.Text = "----";
+			this.BTNUpdate.UseVisualStyleBackColor = true;
+			// 
+			// نسخجدیدToolStripMenuItem
+			// 
+			this.نسخجدیدToolStripMenuItem.Name = "نسخجدیدToolStripMenuItem";
+			this.نسخجدیدToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.نسخجدیدToolStripMenuItem.Text = "نسخ جدید";
+			// 
 			// FRMMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ActiveCaption;
 			this.ClientSize = new System.Drawing.Size(1098, 563);
+			this.Controls.Add(this.BTNUpdate);
 			this.Controls.Add(this.BTNCleanOldMessages);
 			this.Controls.Add(this.LB);
 			this.Controls.Add(this.tabControl1);
@@ -382,7 +390,6 @@
 		private System.Windows.Forms.TextBox TXTUserName;
 		private System.Windows.Forms.RichTextBox ReadyBox;
 		private System.Windows.Forms.RichTextBox RTBChatBox;
-		private System.Windows.Forms.Button BTNTimersStop;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button BTNLogin;
 		private System.Windows.Forms.Label username;
@@ -397,6 +404,8 @@
 		private System.Windows.Forms.ToolStripMenuItem راهنماToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem دربارهبرنامهToolStripMenuItem;
 		private System.Windows.Forms.Button BTNCleanOldMessages;
+		private System.Windows.Forms.Button BTNUpdate;
+		private System.Windows.Forms.ToolStripMenuItem نسخجدیدToolStripMenuItem;
 	}
 }
 

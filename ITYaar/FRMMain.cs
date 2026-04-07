@@ -223,7 +223,7 @@ namespace ITYaar
 		}
 		private void TimerLoadingMSG_Tick(object sender, EventArgs e)
 		{
-			DoLogEvent(runningMode, "TimerLoadingMSG Ticked.");
+			//DoLogEvent(runningMode, "TimerLoadingMSG Ticked.");
 			LoadMessages();
 		}
 		private string killSession(string cn)
@@ -531,7 +531,7 @@ namespace ITYaar
 			//StartTimerLoadingMSG();
 			seenFiles.Clear();
 			RTBChatBox.Clear();
-			DoLogEvent(runningMode, "New Key Has been set...");
+			DoLogEvent(runningMode, "Old MSG has been delete.");
 			ReadyBox.Enabled = true;
 			BTNRefresh.Enabled = true;
 			BTNSend.Enabled = true;
