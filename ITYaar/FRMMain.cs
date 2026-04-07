@@ -539,7 +539,12 @@ namespace ITYaar
 			StartTimerLoadingMSG();
 		}
 
-		void AddMessageToUI(string msg)
+        private void BTNUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        void AddMessageToUI(string msg)
 		{
 			if (InvokeRequired)
 			{
