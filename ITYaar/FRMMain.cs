@@ -146,6 +146,31 @@ namespace ITYaar
 				throw;
 			}
 		}
+		void CleanOldMessages()
+		{
+			try
+			{
+				if (!Directory.Exists(chatFolder))
+					return;
+
+				var files = Directory.GetFiles(chatFolder, "*.txt");
+
+				foreach (var file in files)
+				{
+					DateTime fileTime = File.GetLastWriteTime(file);
+
+					if (fileTime < DateTime.Now.AddDays(-1))
+					{
+						File.Delete(file);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				DoLogEvent(runningMode, "CleanOldMessages Error: " + ex.Message);
+			}
+		}
+
 		private void BTNLogin_Click(object sender, EventArgs e)
 		{
 
@@ -474,6 +499,28 @@ namespace ITYaar
 
 			ReadyBox.Clear();
 		}
+
+		private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+		{
+
+		}
+
+		private void راهنماToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void دربارهبرنامهToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			FRMMyInfo f = new FRMMyInfo();
+			f.ShowDialog();
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			CleanOldMessages();
+		}
+
 		void AddMessageToUI(string msg)
 		{
 			if (InvokeRequired)
