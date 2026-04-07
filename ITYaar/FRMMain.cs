@@ -541,7 +541,10 @@ namespace ITYaar
 
         private void BTNUpdate_Click(object sender, EventArgs e)
         {
-
+			// اول چک کن اپدیتور کنارت هست یا نه اگه نبود از سرور بگیرش
+			//بعد
+			// اگه نسخه جدید از خودت بود برو برای اپدیت
+			// اینجا باید مکانیزم برای تشخیص نسخه بریزی
         }
 
         void AddMessageToUI(string msg)
