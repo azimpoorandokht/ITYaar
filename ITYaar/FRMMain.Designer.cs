@@ -38,25 +38,25 @@
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.btnKillSession = new System.Windows.Forms.Button();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
-			this.label1 = new System.Windows.Forms.Label();
-			this.RTBChatBox = new System.Windows.Forms.RichTextBox();
-			this.ReadyBox = new System.Windows.Forms.RichTextBox();
-			this.BTNSend = new System.Windows.Forms.Button();
-			this.label2 = new System.Windows.Forms.Label();
-			this.NUDTalar = new System.Windows.Forms.NumericUpDown();
-			this.BTNRefresh = new System.Windows.Forms.Button();
-			this.TXTUserName = new System.Windows.Forms.TextBox();
-			this.username = new System.Windows.Forms.Label();
-			this.BTNLogin = new System.Windows.Forms.Button();
 			this.TXTKey = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
+			this.TXTUserName = new System.Windows.Forms.TextBox();
+			this.ReadyBox = new System.Windows.Forms.RichTextBox();
+			this.RTBChatBox = new System.Windows.Forms.RichTextBox();
 			this.BTNTimersStop = new System.Windows.Forms.Button();
+			this.label3 = new System.Windows.Forms.Label();
+			this.BTNLogin = new System.Windows.Forms.Button();
+			this.username = new System.Windows.Forms.Label();
+			this.BTNRefresh = new System.Windows.Forms.Button();
+			this.NUDTalar = new System.Windows.Forms.NumericUpDown();
+			this.label2 = new System.Windows.Forms.Label();
+			this.BTNSend = new System.Windows.Forms.Button();
+			this.label1 = new System.Windows.Forms.Label();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.راهنماToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.راهنماToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.دربارهبرنامهToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.button1 = new System.Windows.Forms.Button();
+			this.BTNCleanOldMessages = new System.Windows.Forms.Button();
 			this.tabPage1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tabPage4.SuspendLayout();
@@ -150,22 +150,23 @@
 			this.tabPage4.Text = "استخبارات";
 			this.tabPage4.UseVisualStyleBackColor = true;
 			// 
-			// label1
+			// TXTKey
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(864, 18);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(38, 17);
-			this.label1.TabIndex = 1;
-			this.label1.Text = "کلید:";
+			this.TXTKey.Location = new System.Drawing.Point(636, 14);
+			this.TXTKey.Name = "TXTKey";
+			this.TXTKey.Size = new System.Drawing.Size(223, 24);
+			this.TXTKey.TabIndex = 0;
+			this.TXTKey.Text = "MyKey";
 			// 
-			// RTBChatBox
+			// TXTUserName
 			// 
-			this.RTBChatBox.Location = new System.Drawing.Point(8, 47);
-			this.RTBChatBox.Name = "RTBChatBox";
-			this.RTBChatBox.Size = new System.Drawing.Size(1074, 265);
-			this.RTBChatBox.TabIndex = 3;
-			this.RTBChatBox.Text = "";
+			this.TXTUserName.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+			this.TXTUserName.Location = new System.Drawing.Point(344, 14);
+			this.TXTUserName.Name = "TXTUserName";
+			this.TXTUserName.Size = new System.Drawing.Size(227, 25);
+			this.TXTUserName.TabIndex = 10;
+			this.TXTUserName.Text = "MyName";
+			this.TXTUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TXTUserName_KeyDown);
 			// 
 			// ReadyBox
 			// 
@@ -177,25 +178,62 @@
 			this.ReadyBox.Text = "";
 			this.ReadyBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReadyBox_KeyDown);
 			// 
-			// BTNSend
+			// RTBChatBox
 			// 
-			this.BTNSend.Enabled = false;
-			this.BTNSend.Location = new System.Drawing.Point(94, 318);
-			this.BTNSend.Name = "BTNSend";
-			this.BTNSend.Size = new System.Drawing.Size(101, 76);
-			this.BTNSend.TabIndex = 5;
-			this.BTNSend.Text = "ENTER برای ارسال";
-			this.BTNSend.UseVisualStyleBackColor = true;
-			this.BTNSend.Click += new System.EventHandler(this.sendButton_Click);
+			this.RTBChatBox.Location = new System.Drawing.Point(8, 47);
+			this.RTBChatBox.Name = "RTBChatBox";
+			this.RTBChatBox.Size = new System.Drawing.Size(1074, 265);
+			this.RTBChatBox.TabIndex = 3;
+			this.RTBChatBox.Text = "";
 			// 
-			// label2
+			// BTNTimersStop
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(1213, 14);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(78, 17);
-			this.label2.TabIndex = 6;
-			this.label2.Text = "شماره تالار:";
+			this.BTNTimersStop.Location = new System.Drawing.Point(8, 11);
+			this.BTNTimersStop.Name = "BTNTimersStop";
+			this.BTNTimersStop.Size = new System.Drawing.Size(153, 30);
+			this.BTNTimersStop.TabIndex = 16;
+			this.BTNTimersStop.Text = "اعمال کلید جدید";
+			this.BTNTimersStop.UseVisualStyleBackColor = true;
+			this.BTNTimersStop.Click += new System.EventHandler(this.BTNTimersStop_Click);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(1007, 15);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(78, 17);
+			this.label3.TabIndex = 13;
+			this.label3.Text = "شماره تالار:";
+			// 
+			// BTNLogin
+			// 
+			this.BTNLogin.Location = new System.Drawing.Point(256, 11);
+			this.BTNLogin.Name = "BTNLogin";
+			this.BTNLogin.Size = new System.Drawing.Size(82, 30);
+			this.BTNLogin.TabIndex = 12;
+			this.BTNLogin.Text = "ورود";
+			this.BTNLogin.UseVisualStyleBackColor = true;
+			this.BTNLogin.Click += new System.EventHandler(this.BTNLogin_Click);
+			// 
+			// username
+			// 
+			this.username.AutoSize = true;
+			this.username.Location = new System.Drawing.Point(576, 18);
+			this.username.Name = "username";
+			this.username.Size = new System.Drawing.Size(59, 17);
+			this.username.TabIndex = 11;
+			this.username.Text = "نام کاربر:";
+			// 
+			// BTNRefresh
+			// 
+			this.BTNRefresh.Enabled = false;
+			this.BTNRefresh.Location = new System.Drawing.Point(8, 318);
+			this.BTNRefresh.Name = "BTNRefresh";
+			this.BTNRefresh.Size = new System.Drawing.Size(75, 76);
+			this.BTNRefresh.TabIndex = 9;
+			this.BTNRefresh.Text = "رفرش";
+			this.BTNRefresh.UseVisualStyleBackColor = true;
+			this.BTNRefresh.Click += new System.EventHandler(this.Refresh_Click);
 			// 
 			// NUDTalar
 			// 
@@ -211,72 +249,34 @@
             0,
             0});
 			// 
-			// BTNRefresh
+			// label2
 			// 
-			this.BTNRefresh.Enabled = false;
-			this.BTNRefresh.Location = new System.Drawing.Point(8, 318);
-			this.BTNRefresh.Name = "BTNRefresh";
-			this.BTNRefresh.Size = new System.Drawing.Size(75, 76);
-			this.BTNRefresh.TabIndex = 9;
-			this.BTNRefresh.Text = "رفرش";
-			this.BTNRefresh.UseVisualStyleBackColor = true;
-			this.BTNRefresh.Click += new System.EventHandler(this.Refresh_Click);
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(1213, 14);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(78, 17);
+			this.label2.TabIndex = 6;
+			this.label2.Text = "شماره تالار:";
 			// 
-			// TXTUserName
+			// BTNSend
 			// 
-			this.TXTUserName.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-			this.TXTUserName.Location = new System.Drawing.Point(344, 14);
-			this.TXTUserName.Name = "TXTUserName";
-			this.TXTUserName.Size = new System.Drawing.Size(227, 25);
-			this.TXTUserName.TabIndex = 10;
-			this.TXTUserName.Text = "MyName";
-			this.TXTUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TXTUserName_KeyDown);
+			this.BTNSend.Enabled = false;
+			this.BTNSend.Location = new System.Drawing.Point(94, 318);
+			this.BTNSend.Name = "BTNSend";
+			this.BTNSend.Size = new System.Drawing.Size(101, 76);
+			this.BTNSend.TabIndex = 5;
+			this.BTNSend.Text = "ENTER برای ارسال";
+			this.BTNSend.UseVisualStyleBackColor = true;
+			this.BTNSend.Click += new System.EventHandler(this.sendButton_Click);
 			// 
-			// username
+			// label1
 			// 
-			this.username.AutoSize = true;
-			this.username.Location = new System.Drawing.Point(576, 18);
-			this.username.Name = "username";
-			this.username.Size = new System.Drawing.Size(59, 17);
-			this.username.TabIndex = 11;
-			this.username.Text = "نام کاربر:";
-			// 
-			// BTNLogin
-			// 
-			this.BTNLogin.Location = new System.Drawing.Point(256, 11);
-			this.BTNLogin.Name = "BTNLogin";
-			this.BTNLogin.Size = new System.Drawing.Size(82, 30);
-			this.BTNLogin.TabIndex = 12;
-			this.BTNLogin.Text = "ورود";
-			this.BTNLogin.UseVisualStyleBackColor = true;
-			this.BTNLogin.Click += new System.EventHandler(this.BTNLogin_Click);
-			// 
-			// TXTKey
-			// 
-			this.TXTKey.Location = new System.Drawing.Point(636, 14);
-			this.TXTKey.Name = "TXTKey";
-			this.TXTKey.Size = new System.Drawing.Size(223, 24);
-			this.TXTKey.TabIndex = 0;
-			this.TXTKey.Text = "MyKey";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(1007, 15);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(78, 17);
-			this.label3.TabIndex = 13;
-			this.label3.Text = "شماره تالار:";
-			// 
-			// BTNTimersStop
-			// 
-			this.BTNTimersStop.Location = new System.Drawing.Point(8, 11);
-			this.BTNTimersStop.Name = "BTNTimersStop";
-			this.BTNTimersStop.Size = new System.Drawing.Size(153, 30);
-			this.BTNTimersStop.TabIndex = 16;
-			this.BTNTimersStop.Text = "بازخوانی با کلید جدید";
-			this.BTNTimersStop.UseVisualStyleBackColor = true;
-			this.BTNTimersStop.Click += new System.EventHandler(this.BTNTimersStop_Click);
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(864, 18);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(38, 17);
+			this.label1.TabIndex = 1;
+			this.label1.Text = "کلید:";
 			// 
 			// tabControl1
 			// 
@@ -318,27 +318,27 @@
 			// راهنماToolStripMenuItem1
 			// 
 			this.راهنماToolStripMenuItem1.Name = "راهنماToolStripMenuItem1";
-			this.راهنماToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+			this.راهنماToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
 			this.راهنماToolStripMenuItem1.Text = "راهنما";
 			// 
 			// دربارهبرنامهToolStripMenuItem
 			// 
 			this.دربارهبرنامهToolStripMenuItem.Name = "دربارهبرنامهToolStripMenuItem";
-			this.دربارهبرنامهToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.دربارهبرنامهToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
 			this.دربارهبرنامهToolStripMenuItem.Text = "درباره برنامه";
 			this.دربارهبرنامهToolStripMenuItem.Click += new System.EventHandler(this.دربارهبرنامهToolStripMenuItem_Click);
 			// 
-			// button1
+			// BTNCleanOldMessages
 			// 
-			this.button1.Enabled = false;
-			this.button1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-			this.button1.Location = new System.Drawing.Point(12, 465);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(187, 33);
-			this.button1.TabIndex = 17;
-			this.button1.Text = "حذف پیام های قدیمی";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.BTNCleanOldMessages.Enabled = false;
+			this.BTNCleanOldMessages.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+			this.BTNCleanOldMessages.Location = new System.Drawing.Point(12, 465);
+			this.BTNCleanOldMessages.Name = "BTNCleanOldMessages";
+			this.BTNCleanOldMessages.Size = new System.Drawing.Size(187, 33);
+			this.BTNCleanOldMessages.TabIndex = 17;
+			this.BTNCleanOldMessages.Text = "حذف پیام های قدیمی";
+			this.BTNCleanOldMessages.UseVisualStyleBackColor = true;
+			this.BTNCleanOldMessages.Click += new System.EventHandler(this.BTNCleanOldMessages_Click);
 			// 
 			// FRMMain
 			// 
@@ -346,12 +346,12 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ActiveCaption;
 			this.ClientSize = new System.Drawing.Size(1098, 563);
-			this.Controls.Add(this.button1);
+			this.Controls.Add(this.BTNCleanOldMessages);
 			this.Controls.Add(this.LB);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.menuStrip1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "FRMMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "-";
@@ -396,7 +396,7 @@
 		private System.Windows.Forms.ToolStripMenuItem راهنماToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem راهنماToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem دربارهبرنامهToolStripMenuItem;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button BTNCleanOldMessages;
 	}
 }
 

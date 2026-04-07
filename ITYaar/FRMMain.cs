@@ -171,15 +171,7 @@ namespace ITYaar
 			}
 		}
 
-		private void BTNLogin_Click(object sender, EventArgs e)
-		{
-
-			LoadMessages();
-			StartTimerLoadingMSG();
-			ReadyBox.Enabled = true;
-			BTNRefresh.Enabled = true;
-			BTNSend.Enabled = true;
-		}
+		
 		private void BTNSend_Click(object sender, EventArgs e)
 		{
 			//DoLogEvent(runningMode, "Sending Message .");
@@ -362,6 +354,18 @@ namespace ITYaar
             //DoLogEvent(runningMode, "Timers Stoped.");
 
         }
+		private void BTNLogin_Click(object sender, EventArgs e)
+		{
+
+			seenFiles.Clear();
+			RTBChatBox.Clear();
+			DoLogEvent(runningMode, "New Key Has been set...");
+			ReadyBox.Enabled = true;
+			BTNRefresh.Enabled = true;
+			BTNSend.Enabled = true;
+			LoadMessages();
+			StartTimerLoadingMSG();
+		}
 		///////////////////////////////////////////////////////////////////////// Function
 		private void killMeNow()
 		{
@@ -516,9 +520,23 @@ namespace ITYaar
 			f.ShowDialog();
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		
+
+		private void BTNCleanOldMessages_Click(object sender, EventArgs e)
 		{
 			CleanOldMessages();
+			//seenFiles.Clear();
+			//RTBChatBox.Clear();
+			//LoadMessages();
+			//StartTimerLoadingMSG();
+			seenFiles.Clear();
+			RTBChatBox.Clear();
+			DoLogEvent(runningMode, "New Key Has been set...");
+			ReadyBox.Enabled = true;
+			BTNRefresh.Enabled = true;
+			BTNSend.Enabled = true;
+			LoadMessages();
+			StartTimerLoadingMSG();
 		}
 
 		void AddMessageToUI(string msg)
