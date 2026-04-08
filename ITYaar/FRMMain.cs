@@ -310,26 +310,35 @@ namespace ITYaar
 				Thread.Sleep(100);
 
 				var fullMes = DateTime.Now + " : " + massage + Environment.NewLine;
-				if (myRunningMode == enumRunningMode.Develop_Mode) // محیط اجرای برنامه نویس
+                AddLog(fullMes);
+
+                if (myRunningMode == enumRunningMode.Develop_Mode) // محیط اجرای برنامه نویس
 				{
 					// بعدا ممکنه بخوای اینو تغییر بدی
 				}
 				else ///محید اجرای واقعی
 				{
-					string logfile = Path.Combine(myDirectory, myLogfile);
-					if (!File.Exists(logfile))
+					//string logfile = Path.Combine(myDirectory, myLogfile);
+					if (File.Exists(myLogfile))
 					{
-						File.Create(logfile);
-					}
-					System.IO.File.AppendAllText(logfile, fullMes);
+                        System.IO.File.AppendAllText(myLogfile, fullMes);
+                        AddLog("ثبت در لاگ");
+                    }
+					else
+					{
+                        AddLog("تابع دولاگ - فایل لاگ وجود ندارد");
+                        File.Create(myLogfile);
+                    }
+					
+					
 				}
-				AddLog(fullMes);
+				//AddLog(fullMes);
 			}
 			catch (Exception ee)
 			{
-				MessageBox.Show(" لاگ آپدیت : مشکل دسترسی به مسیر پیش فرض \n" + ee.Message);
-				//killMeNow();
-			}
+				AddLog(" خطا در دسترسی به فایل لاگ" );
+               
+            }
 		}
 		private void TXTUserName_KeyDown(object sender, KeyEventArgs e)
 		{
