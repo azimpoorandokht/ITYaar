@@ -50,7 +50,6 @@ namespace ITYaar
 		public string myFullPhisicalPath = Assembly.GetExecutingAssembly().Location;
 		public string myPhisicalPath = Assembly.GetExecutingAssembly().Location;//OK
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        //public string ServerConfigDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public string myFileName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);
 		public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
 		public string local_Update_Path;
@@ -59,7 +58,8 @@ namespace ITYaar
 		public enumRunningMode runningMode = enumRunningMode.NotSet;
 		public string myLogfile;//="ITYaar.log.txt";
 
-        public Dictionary<string, string> myConfigurationDictionary, remoteConfigDictionary;
+        public Dictionary<string, string> myConfigurationDictionary, ServerConfigDictiory;
+		
 		public enum enumRunningMode // بر نامه دو حالت اجرا دارد یکی در لبتاب من و در محیط آزمایشگاهی و دیگری در محیط واقعی
 		{
 			Develop_Mode = 0,
@@ -116,7 +116,7 @@ namespace ITYaar
 				else //فایل تنظیمات کنارمه 
 				{
 					myConfigurationDictionary = retriveMyConfiguration(); //تنظیمات لود بشه
-																		  //runningMode = GetRunnigMode();//تعیین حالت اجرا
+					ServerConfigDictiory = retriveServerConfiguration();													  //runningMode = GetRunnigMode();//تعیین حالت اجرا
 					if (myConfigurationDictionary["runningMode"] == "1")  //real environment mode
 					{
 						runningMode = enumRunningMode.Real_Environment_Mode;
@@ -414,11 +414,11 @@ namespace ITYaar
 				throw;
 			}
 		}
-        private Dictionary<string, string> retriveServerConfig() 
+        private Dictionary<string, string> retriveServerConfiguration() 
         {
             try
             {
-                string serverInfoFile = myConfigurationDictionary["UpdatorAddress="]+ "\\info.txt";
+               // string serverInfoFile = myConfigurationDictionary["UpdatorAddress="] + "\\info.txt";
                 string[] lines = File.ReadAllLines("serverInfoFile");
                 return lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
             }
