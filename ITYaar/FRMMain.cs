@@ -82,6 +82,11 @@ namespace ITYaar
 			return enumRunningMode.Develop_Mode;
 		}
 		/////////////////////////////////////////////////////////////////////Form events
+		public Boolean CheckForNewVersion()
+		{
+
+			return false;
+		}
 		private void FRMMain_Load(object sender, EventArgs e)
 		{
 			try
@@ -173,8 +178,6 @@ namespace ITYaar
 				AddLogToUI( "CleanOldMessages Error: " + ex.Message);
 			}
 		}
-
-		
 		private void BTNSend_Click(object sender, EventArgs e)
 		{
 			//AddlogToFile( "Sending Message .");
@@ -190,7 +193,6 @@ namespace ITYaar
 		{
 			LoadMessages();
 		}
-		
 		private void ReadyBox_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
@@ -345,7 +347,6 @@ namespace ITYaar
 				BTNSend.Enabled = true;
 			}
 		}
-		
 		private void BTNLogin_Click(object sender, EventArgs e)
 		{
 
@@ -413,7 +414,24 @@ namespace ITYaar
 				throw;
 			}
 		}
-		void LoadMessages()
+        private Dictionary<string, string> retriveServerConfig() 
+        {
+            try
+            {
+                string serverInfoFile = myConfigurationDictionary["UpdatorAddress="]+ "\\info.txt";
+                string[] lines = File.ReadAllLines("serverInfoFile");
+                return lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
+            }
+            catch (Exception ee)
+            {
+                var st = new StackTrace();
+                var me = st.GetFrame(0).GetMethod().Name;
+                AddLogToUI("ERROR: " + me + " : " + ee.Message);
+
+                throw;
+            }
+        }
+        void LoadMessages()
 		{
 			/////////// بهتره اول فایل ها رو از آخرین فایلی که توی کش هست به بعد بیارم توی کش
 			try
@@ -456,19 +474,19 @@ namespace ITYaar
 			}
 			else
 			{
-				username = myIpAddress +" " + TXTUserName.Text.Trim() ;
+				username = myIpAddress + " == " + TXTUserName.Text.Trim() ;
 			}
 			//string username = TXTUserName.Text.Trim() + new Random().Next(100, 999);
 			
 
 			// بعد رمز بشه بر توی یه فایل توی سرور بشینه
 
-			// اینجا یه فایل باید ایجاد کنیم توی  216 پابلیک
+			// اینجا یه فایل باید ایجاد کنیم توی سرور
 			string message = "خالی";
 			if (string.IsNullOrWhiteSpace(ReadyBox.Text))
 			{
 				//return;
-				message = username + ": \n" + "Empty";
+				message = username + ": \n" + "اینتر الکی زد";
 			}
 			else
 			{
@@ -511,9 +529,6 @@ namespace ITYaar
 			FRMMyInfo f = new FRMMyInfo();
 			f.ShowDialog();
 		}
-
-		
-
 		private void BTNCleanOldMessages_Click(object sender, EventArgs e)
 		{
 			CleanOldMessages();
