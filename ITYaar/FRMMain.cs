@@ -103,7 +103,9 @@ namespace ITYaar
 				{
 					//این قسمت بعدا توسعه پیدا کنه
 					AddLogToUI("فایل کانفیگ نیست که");
-					return;
+					//return;
+					MessageBox.Show("فایل کانفیگ نیست که");
+					killMeNow();
 				}
 				else //فایل تنظیمات کنارمه 
 				{
