@@ -50,7 +50,8 @@ namespace ITYaar
 		public string myFullPhisicalPath = Assembly.GetExecutingAssembly().Location;
 		public string myPhisicalPath = Assembly.GetExecutingAssembly().Location;//OK
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-		public string myFileName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);
+        //public string ServerConfigDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        public string myFileName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);
 		public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
 		public string local_Update_Path;
 		public string Remote_Update_Path;
