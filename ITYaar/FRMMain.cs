@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
-using System.Net;
 using System.Reflection;
+using System.Runtime.Remoting.Messaging;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using static System.Windows.Forms.AxHost;
 /*
  این برنامه اصلی است 
@@ -101,7 +102,8 @@ namespace ITYaar
 				if (!File.Exists("GlobalValuesText.txt")) //اگه فایل کنارم نیست ینی تو مود اجرای واقعی هستم دیگه
 				{
 					//این قسمت بعدا توسعه پیدا کنه
-					DoLogEvent(enumRunningMode.Real_Environment_Mode, "Config file does not exist.");
+					AddLogToUI("فایل کانفیگ نیست که");
+					return;
 				}
 				else //فایل تنظیمات کنارمه 
 				{
@@ -118,22 +120,18 @@ namespace ITYaar
 					else  // developer mode
 					{
 						runningMode = enumRunningMode.Develop_Mode;
-						//local_Update_Path = myConfigurationDictionary["Developer_Mode_Update_Path"];
-						//Remote_Update_Path = myConfigurationDictionary["Developer_Mode_Update_Path"];
+						
 						Target1 = myConfigurationDictionary["Target1"];
 						chatFolder = myConfigurationDictionary["RoomsAddress"]; ; // مسیر پوشه چت
 					}
-					///////////////////////////////////////////////// چاپ متغیر ها
-					DoLogEvent(runningMode, "Running Mode = " + runningMode.ToString());
-					DoLogEvent(runningMode, "myPhisicalPath = " + myPhisicalPath.ToString());
-					DoLogEvent(runningMode, "myDirectory = " + myDirectory.ToString());
-					DoLogEvent(runningMode, "myName = " + myName.ToString());
-					//DoLogEvent(runningMode, "RealEnv_local_Update_Location = " + local_Update_Path.ToString());
-					//DoLogEvent(runningMode, "RealEnv_Remote_Update_Location = " + Remote_Update_Path.ToString());
-					DoLogEvent(runningMode, "myLogfile = " + myLogfile.ToString());
-					DoLogEvent(runningMode, "My version is " + myVersion);
-					//DoLogEvent(runningMode, "Chat folder= " + chatFolder);
-					DoLogEvent(runningMode, "My Ip Adress= " + myIpAddress);
+                    ///////////////////////////////////////////////// چاپ متغیر ها
+                    AddLogToUI( "Running Mode = " + runningMode.ToString());
+                    AddLogToUI( "myPhisicalPath = " + myPhisicalPath.ToString());
+                    AddLogToUI( "myDirectory = " + myDirectory.ToString());
+                    AddLogToUI( "myName = " + myName.ToString());
+                    AddLogToUI( "myLogfile = " + myLogfile.ToString());
+                    AddLogToUI( "My version is " + myVersion);
+                    AddLogToUI( "My Ip Adress= " + myIpAddress);
 				}
 				///////////////////   اول باید نسخه آپدیتور چک بشه اگر نیاز بود بروز رسانی کنه
 				//////////////////     نسخه خود چک شود و اگر قدیمی بود آپدیتور را اجرا و خود را ببنندد
@@ -145,8 +143,8 @@ namespace ITYaar
 			}
 			catch (Exception ee)
 			{
-				DoLogEvent(runningMode, "Error: " + ee.Message);
-				//AddLog(ee.Message);
+				AddlogToFile( "Error: " + ee.Message);
+				//AddLogToUI(ee.Message);
 				throw;
 			}
 		}
@@ -171,14 +169,14 @@ namespace ITYaar
 			}
 			catch (Exception ex)
 			{
-				DoLogEvent(runningMode, "CleanOldMessages Error: " + ex.Message);
+				AddlogToFile( "CleanOldMessages Error: " + ex.Message);
 			}
 		}
 
 		
 		private void BTNSend_Click(object sender, EventArgs e)
 		{
-			//DoLogEvent(runningMode, "Sending Message .");
+			//AddlogToFile( "Sending Message .");
 
 			SendMessage();
 			LoadMessages();
@@ -203,7 +201,7 @@ namespace ITYaar
 		}
 		private void btnKillSession_Click(object sender, EventArgs e)
 		{
-			DoLogEvent(runningMode, "Start killing " + myMachinName);
+			AddLogToUI( "Start killing " + myMachinName);
 			string tempalikhan = btnKillSession.Text;
 			btnKillSession.Enabled = false;
 			btnKillSession.Text = "اندکی صبر";
@@ -215,9 +213,10 @@ namespace ITYaar
 			btnKillSession.Enabled = true;
 			btnKillSession.Text = tempalikhan;
 		}
-		private void AddLog(string x)
+		private void AddLogToUI(string massage)
 		{
-			LB.Items.Add(x);
+            var fullMes = DateTime.Now + " : " + massage + Environment.NewLine;
+            LB.Items.Add(fullMes);
 			int lastIndex = LB.Items.Count - 1;
 			if (lastIndex >= 0)
 			{
@@ -227,7 +226,7 @@ namespace ITYaar
 		}
 		private void TimerLoadingMSG_Tick(object sender, EventArgs e)
 		{
-			//DoLogEvent(runningMode, "TimerLoadingMSG Ticked.");
+			//AddlogToFile( "TimerLoadingMSG Ticked.");
 			LoadMessages();
 		}
 		private string killSession(string cn)
@@ -249,36 +248,36 @@ namespace ITYaar
 				using (OleDbConnection xConn = new OleDbConnection(xConStr))
 				{
 					xConn.Open();
-					AddLog("ConnectionState = Open");
+					AddLogToUI("ConnectionState = Open");
 					using (OleDbCommand xCommand = new OleDbCommand(xQuery, xConn))
 					{
 						//TODO: May be you have parameters - assign them here...
 						using (var xReader = xCommand.ExecuteReader())
 						{
-							AddLog("Executereader is running.");
+							AddLogToUI("Executereader is running.");
 							while (xReader.Read())
 							{
 								txtSid = xReader.GetValue(1).ToString();
 								txtSerial = xReader.GetValue(2).ToString();
-								AddLog("sid=" + txtSid + "   serial=" + txtSerial);
+								AddLogToUI("sid=" + txtSid + "   serial=" + txtSerial);
 
 								string alterQuery = "ALTER SYSTEM KILL SESSION '" + txtSid + "," + txtSerial + "'";
 								using (OleDbCommand yCommand = new OleDbCommand(alterQuery, xConn))
 								{
 									try
 									{
-										AddLog("Alter kill session:" + yCommand.ExecuteNonQuery() + " records affected.");
+										AddLogToUI("Alter kill session:" + yCommand.ExecuteNonQuery() + " records affected.");
 									}
 									catch (Exception ee)
 									{
-										AddLog("Alter : " + ee.Message);
+										AddLogToUI("Alter : " + ee.Message);
 										//return "unsuccessfull";
 										//throw;
 									}
 								}
 
 							}
-							AddLog("Reader finished.");
+							AddLogToUI("Reader finished.");
 						}
 
 					}
@@ -290,7 +289,7 @@ namespace ITYaar
 			{
 				var st = new StackTrace();
 				var me = st.GetFrame(0).GetMethod().Name;
-				AddLog(me + " : " + e.Message);
+				AddLogToUI(me + " : " + e.Message);
 				return "Unsuccessfull";
 				throw;
 			}
@@ -300,44 +299,38 @@ namespace ITYaar
 			TimerLoadingMSG.Enabled = true;
 			//TimerLoadingMSG.Tick += (object s, EventArgs e1) => LoadMessages();
 			TimerLoadingMSG.Start();
-			DoLogEvent(runningMode, "TimerLoadingMSG Started.");
+            AddLogToUI( "TimerLoadingMSG Started.");
 
 		}
-		private void DoLogEvent(enumRunningMode myRunningMode, string massage)
+		private Boolean AddlogToFile( string massage)
 		{
 			try
 			{
-				Thread.Sleep(100);
+				Thread.Sleep(50);
 
 				var fullMes = DateTime.Now + " : " + massage + Environment.NewLine;
-                AddLog(fullMes);
-
-                if (myRunningMode == enumRunningMode.Develop_Mode) // محیط اجرای برنامه نویس
-				{
-					// بعدا ممکنه بخوای اینو تغییر بدی
-				}
-				else ///محید اجرای واقعی
-				{
-					//string logfile = Path.Combine(myDirectory, myLogfile);
-					if (File.Exists(myLogfile))
-					{
-                        System.IO.File.AppendAllText(myLogfile, fullMes);
-                        AddLog("ثبت در لاگ");
-                    }
-					else
-					{
-                        AddLog("تابع دولاگ - فایل لاگ وجود ندارد");
-                        File.Create(myLogfile);
-                    }
+                //AddLogToUI(massage);
+                if (File.Exists(myLogfile))
+                {
+                    System.IO.File.AppendAllText(myLogfile, fullMes);
+                    //AddLogToUI("در فایل ثبت شد.");
 					
-					
-				}
-				//AddLog(fullMes);
-			}
+                }
+                else
+                {
+                    AddLogToUI("تابع دولاگ - فایل لاگ وجود ندارد");
+                    File.Create(myLogfile);
+                    AddLogToUI("تابع دولاگ - فایل لاگ ایجاد شد");
+                    System.IO.File.AppendAllText(myLogfile, fullMes);
+                    
+                }
+                return true;
+            }
 			catch (Exception ee)
 			{
-				AddLog(" خطا در دسترسی به فایل لاگ" );
-               
+				AddLogToUI(" خطا در دسترسی به فایل لاگ" );
+				AddLogToUI(ee.Message);
+				return false;
             }
 		}
 		private void TXTUserName_KeyDown(object sender, KeyEventArgs e)
@@ -351,28 +344,13 @@ namespace ITYaar
 				BTNSend.Enabled = true;
 			}
 		}
-		private void BTNTimersStop_Click(object sender, EventArgs e)
-		{
-			seenFiles.Clear();
-			RTBChatBox.Clear();
-            DoLogEvent(runningMode, "New Key Has been set...");
-            ReadyBox.Enabled = true;
-            BTNRefresh.Enabled = true;
-            BTNSend.Enabled = true;
-            LoadMessages();
-            StartTimerLoadingMSG();
-            //ReadyBox.Enabled = false;
-            //BTNRefresh.Enabled = false;
-            //BTNSend.Enabled = false;
-            //DoLogEvent(runningMode, "Timers Stoped.");
-
-        }
+		
 		private void BTNLogin_Click(object sender, EventArgs e)
 		{
 
 			seenFiles.Clear();
 			RTBChatBox.Clear();
-			DoLogEvent(runningMode, "New Key Has been set...");
+			AddLogToUI("New Key Has been set...");
 			ReadyBox.Enabled = true;
 			BTNRefresh.Enabled = true;
 			BTNSend.Enabled = true;
@@ -397,7 +375,7 @@ namespace ITYaar
 			}
 			else //programmingMode=true
 			{
-				AddLog("KillMeNow:programmingMode=" + programmingMode.ToString());
+				AddLogToUI("KillMeNow:programmingMode=" + programmingMode.ToString());
 
 			}
 		}
@@ -429,7 +407,7 @@ namespace ITYaar
 			{
 				var st = new StackTrace();
 				var me = st.GetFrame(0).GetMethod().Name;
-				DoLogEvent(runningMode, "ERROR: " + me + " : " + ee.Message);
+				AddlogToFile( "ERROR: " + me + " : " + ee.Message);
 
 				throw;
 			}
@@ -461,7 +439,7 @@ namespace ITYaar
 			}
 			catch (Exception ex)
 			{
-				DoLogEvent(runningMode, "Error: " + ex.Message);
+				AddlogToFile( "Error: " + ex.Message);
 			}
 			
 		}
@@ -504,13 +482,13 @@ namespace ITYaar
 
 			try
 			{
-				//    DoLogEvent(runningMode, "Sending...");
+				//    AddlogToFile( "Sending...");
 				File.WriteAllText(Path.Combine(chatFolder, fname), message);
-				DoLogEvent(runningMode, "Sent...");
+				AddlogToFile( "Sent...");
 			}
 			catch (Exception ex)
 			{
-				DoLogEvent(runningMode, "Error: Write error." + ex.Message);
+				AddlogToFile( "Error: Write error." + ex.Message);
 				//MessageBox.Show("خطا در نوشتن پیام:\n" + ex.Message);
 			}
 
@@ -544,7 +522,7 @@ namespace ITYaar
 			//StartTimerLoadingMSG();
 			seenFiles.Clear();
 			RTBChatBox.Clear();
-			DoLogEvent(runningMode, "Old MSG has been delete.");
+			AddlogToFile( "Old MSG has been delete.");
 			ReadyBox.Enabled = true;
 			BTNRefresh.Enabled = true;
 			BTNSend.Enabled = true;
@@ -577,7 +555,7 @@ namespace ITYaar
 
 }
 //string delTemp = DelFile(targetDirectory, myLogfile);
-//AddLog("Deleting " + myLogfile + " was " + delTemp + ".");
+//AddLogToUI("Deleting " + myLogfile + " was " + delTemp + ".");
 //MessageBox.Show(File.GetAttributes(myLogfile).ToString());
 //SetDefaultValues();
 
@@ -592,7 +570,7 @@ namespace ITYaar
 /*
  if (!DoesFileExist(myDirectory, "VarPass.txt"))
  {
-     AddLog("Check for VarPass.txt  = False");
+     AddLogToUI("Check for VarPass.txt  = False");
      if (!programmingMode)
      {
          MessageBox.Show("آدرس اجرا نادرست است");
@@ -603,7 +581,7 @@ namespace ITYaar
  }
  else
  {
-     AddLog("Check for VarPass.txt = True  ");
+     AddLogToUI("Check for VarPass.txt = True  ");
      DelFile(myDirectory, "VarPass.txt");
      isVarpass = true;
  }
@@ -614,17 +592,17 @@ namespace ITYaar
 if (DoesFileExist(targetDirectory, "TahvilyaarAutoUpdate.exetmp"))
 {
     delTemp = Path.Combine(targetDirectory, "TahvilyaarAutoUpdate.exe");
-    AddLog("Deleting file " + delTemp + " was " + DelFile(targetDirectory, "TahvilyaarAutoUpdate.exe"));
+    AddLogToUI("Deleting file " + delTemp + " was " + DelFile(targetDirectory, "TahvilyaarAutoUpdate.exe"));
     string oldfile = Path.Combine(targetDirectory, "TahvilyaarAutoUpdate.exetmp");
     string newfile = Path.Combine(targetDirectory, "TahvilyaarAutoUpdate.exe");
-    AddLog("Moving file " + oldfile + " to " + newfile + " was " + moveFile(oldfile, newfile));
+    AddLogToUI("Moving file " + oldfile + " to " + newfile + " was " + moveFile(oldfile, newfile));
 }
 */
 
 //remote server
 /*
 remoteServer = findRemoteServer();
-AddLog("Remote server = " + remoteServer);
+AddLogToUI("Remote server = " + remoteServer);
 */
 
 /*       private Boolean isProgrammingMode()
@@ -711,8 +689,8 @@ AddLog("Remote server = " + remoteServer);
             return true;
         else
         {
-            AddLog("mypath                        <>                        targetpath  ");
-            AddLog(myPhisicalPath + " <> " + targetDirectory);
+            AddLogToUI("mypath                        <>                        targetpath  ");
+            AddLogToUI(myPhisicalPath + " <> " + targetDirectory);
         }
 
         return false;
@@ -896,7 +874,7 @@ AddLog("Remote server = " + remoteServer);
 //private void sendERROR(string mes)
 //{
 //    //lblError.Text = mes + "\n";
-//    AddLog("Error : " + mes);
+//    AddLogToUI("Error : " + mes);
 //}
 /*private Boolean DoesFileExist(string tarDir, string fileName)
        {

@@ -167,6 +167,7 @@
             this.TXTKey.Size = new System.Drawing.Size(296, 28);
             this.TXTKey.TabIndex = 0;
             this.TXTKey.Text = "MyKey";
+            this.TXTKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TXTUserName_KeyDown);
             // 
             // TXTUserName
             // 
