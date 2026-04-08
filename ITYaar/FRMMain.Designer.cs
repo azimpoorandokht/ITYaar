@@ -71,7 +71,7 @@
             this.LB.FormattingEnabled = true;
             this.LB.ItemHeight = 16;
             this.LB.Location = new System.Drawing.Point(273, 570);
-            this.LB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LB.Margin = new System.Windows.Forms.Padding(4);
             this.LB.Name = "LB";
             this.LB.Size = new System.Drawing.Size(1173, 116);
             this.LB.TabIndex = 8;
@@ -84,7 +84,7 @@
             // tabPage3
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 30);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1456, 501);
             this.tabPage3.TabIndex = 2;
@@ -94,9 +94,9 @@
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 30);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(1456, 501);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "سامانه ها";
@@ -106,9 +106,9 @@
             // 
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 30);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(1456, 501);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "عملیات";
@@ -118,9 +118,9 @@
             // 
             this.groupBox1.Controls.Add(this.btnKillSession);
             this.groupBox1.Location = new System.Drawing.Point(1013, 7);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(429, 441);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
@@ -129,7 +129,7 @@
             // 
             this.btnKillSession.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnKillSession.Location = new System.Drawing.Point(13, 27);
-            this.btnKillSession.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnKillSession.Margin = new System.Windows.Forms.Padding(4);
             this.btnKillSession.Name = "btnKillSession";
             this.btnKillSession.Size = new System.Drawing.Size(391, 49);
             this.btnKillSession.TabIndex = 4;
@@ -152,9 +152,9 @@
             this.tabPage4.Controls.Add(this.BTNSend);
             this.tabPage4.Controls.Add(this.label1);
             this.tabPage4.Location = new System.Drawing.Point(4, 30);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage4.Size = new System.Drawing.Size(1456, 501);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "استخبارات";
@@ -162,7 +162,7 @@
             // TXTKey
             // 
             this.TXTKey.Location = new System.Drawing.Point(848, 17);
-            this.TXTKey.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TXTKey.Margin = new System.Windows.Forms.Padding(4);
             this.TXTKey.Name = "TXTKey";
             this.TXTKey.Size = new System.Drawing.Size(296, 28);
             this.TXTKey.TabIndex = 0;
@@ -172,7 +172,7 @@
             // 
             this.TXTUserName.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.TXTUserName.Location = new System.Drawing.Point(459, 17);
-            this.TXTUserName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TXTUserName.Margin = new System.Windows.Forms.Padding(4);
             this.TXTUserName.Name = "TXTUserName";
             this.TXTUserName.Size = new System.Drawing.Size(301, 30);
             this.TXTUserName.TabIndex = 10;
@@ -183,7 +183,7 @@
             // 
             this.ReadyBox.Enabled = false;
             this.ReadyBox.Location = new System.Drawing.Point(268, 395);
-            this.ReadyBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ReadyBox.Margin = new System.Windows.Forms.Padding(4);
             this.ReadyBox.Name = "ReadyBox";
             this.ReadyBox.Size = new System.Drawing.Size(1173, 89);
             this.ReadyBox.TabIndex = 4;
@@ -193,7 +193,7 @@
             // RTBChatBox
             // 
             this.RTBChatBox.Location = new System.Drawing.Point(11, 58);
-            this.RTBChatBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RTBChatBox.Margin = new System.Windows.Forms.Padding(4);
             this.RTBChatBox.Name = "RTBChatBox";
             this.RTBChatBox.Size = new System.Drawing.Size(1431, 325);
             this.RTBChatBox.TabIndex = 3;
@@ -212,7 +212,7 @@
             // BTNLogin
             // 
             this.BTNLogin.Location = new System.Drawing.Point(341, 14);
-            this.BTNLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BTNLogin.Margin = new System.Windows.Forms.Padding(4);
             this.BTNLogin.Name = "BTNLogin";
             this.BTNLogin.Size = new System.Drawing.Size(109, 37);
             this.BTNLogin.TabIndex = 12;
@@ -234,7 +234,7 @@
             // 
             this.BTNRefresh.Enabled = false;
             this.BTNRefresh.Location = new System.Drawing.Point(11, 391);
-            this.BTNRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BTNRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.BTNRefresh.Name = "BTNRefresh";
             this.BTNRefresh.Size = new System.Drawing.Size(100, 94);
             this.BTNRefresh.TabIndex = 9;
@@ -247,7 +247,7 @@
             this.NUDTalar.Enabled = false;
             this.NUDTalar.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.NUDTalar.Location = new System.Drawing.Point(1205, 17);
-            this.NUDTalar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NUDTalar.Margin = new System.Windows.Forms.Padding(4);
             this.NUDTalar.Name = "NUDTalar";
             this.NUDTalar.Size = new System.Drawing.Size(131, 30);
             this.NUDTalar.TabIndex = 7;
@@ -271,7 +271,7 @@
             // 
             this.BTNSend.Enabled = false;
             this.BTNSend.Location = new System.Drawing.Point(125, 391);
-            this.BTNSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BTNSend.Margin = new System.Windows.Forms.Padding(4);
             this.BTNSend.Name = "BTNSend";
             this.BTNSend.Size = new System.Drawing.Size(135, 94);
             this.BTNSend.TabIndex = 5;
@@ -297,8 +297,8 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 28);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Location = new System.Drawing.Point(0, 30);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tabControl1.RightToLeftLayout = true;
@@ -314,7 +314,7 @@
             this.راهنماToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1464, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1464, 30);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -326,7 +326,7 @@
             this.دربارهبرنامهToolStripMenuItem,
             this.نسخجدیدToolStripMenuItem});
             this.راهنماToolStripMenuItem.Name = "راهنماToolStripMenuItem";
-            this.راهنماToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
+            this.راهنماToolStripMenuItem.Size = new System.Drawing.Size(76, 26);
             this.راهنماToolStripMenuItem.Text = "اطلاعات";
             this.راهنماToolStripMenuItem.Click += new System.EventHandler(this.راهنماToolStripMenuItem_Click);
             // 
@@ -353,7 +353,7 @@
             // 
             this.BTNCleanOldMessages.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.BTNCleanOldMessages.Location = new System.Drawing.Point(16, 572);
-            this.BTNCleanOldMessages.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BTNCleanOldMessages.Margin = new System.Windows.Forms.Padding(4);
             this.BTNCleanOldMessages.Name = "BTNCleanOldMessages";
             this.BTNCleanOldMessages.Size = new System.Drawing.Size(249, 41);
             this.BTNCleanOldMessages.TabIndex = 17;
@@ -365,7 +365,7 @@
             // 
             this.BTNUpdate.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.BTNUpdate.Location = new System.Drawing.Point(16, 620);
-            this.BTNUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BTNUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.BTNUpdate.Name = "BTNUpdate";
             this.BTNUpdate.Size = new System.Drawing.Size(249, 41);
             this.BTNUpdate.TabIndex = 18;

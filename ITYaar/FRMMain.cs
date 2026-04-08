@@ -55,8 +55,9 @@ namespace ITYaar
 		public string Remote_Update_Path;
 		public string Target1;
 		public enumRunningMode runningMode = enumRunningMode.NotSet;
-		public string myLogfile = "ITYaar.log.txt";
-		public Dictionary<string, string> myConfigurationDictionary, remoteConfigDictionary;
+		public string myLogfile;//="ITYaar.log.txt";
+
+        public Dictionary<string, string> myConfigurationDictionary, remoteConfigDictionary;
 		public enum enumRunningMode // بر نامه دو حالت اجرا دارد یکی در لبتاب من و در محیط آزمایشگاهی و دیگری در محیط واقعی
 		{
 			Develop_Mode = 0,
@@ -84,15 +85,18 @@ namespace ITYaar
 			try
 			{
 				//////////////////////////////// تنظیمات اولیه ست شود
-				this.Text = " برنامه تحویل یار نسخه = " + myVersion;
-				myIpAddress = GetLocalIP();
+				this.Text = " برنامه آی تی یار نسخه = " + myVersion;
+                myLogfile = myName + ".log";
+                myIpAddress = GetLocalIP();
 
-				/////////////////////////////// درصورت وجود لاگ فایل پاک شود
-				//if (File.Exists(myLogfile))
-				//{
-				//    File.Delete(myLogfile);
-				//    File.Create(myLogfile);
-				//}
+				/////////////////////////////// درصورت وجود لاگ فایل پاک شود و بعد دوباره ایجاد شود
+				if (File.Exists(myLogfile))
+				{
+				    File.Delete(myLogfile);
+					Thread.Sleep(100);
+				    File.Create(myLogfile);
+				}
+
 				/////////////////////////////// فایل GlobalValuesText روچک میکنیم ببینیم هست یا نه
 				if (!File.Exists("GlobalValuesText.txt")) //اگه فایل کنارم نیست ینی تو مود اجرای واقعی هستم دیگه
 				{
