@@ -55,18 +55,8 @@ namespace ITYaar
 		public string local_Update_Path;
 		public string Remote_Update_Path;
 		public string Target1;
-		public enumRunningMode runningMode = enumRunningMode.NotSet;
 		public string myLogfile;//="ITYaar.log.txt";
-
         public Dictionary<string, string> myConfigurationDictionary, ServerConfigDictiory;
-		
-		public enum enumRunningMode // بر نامه دو حالت اجرا دارد یکی در لبتاب من و در محیط آزمایشگاهی و دیگری در محیط واقعی
-		{
-			Develop_Mode = 0,
-			Real_Environment_Mode = 1,
-			NotSet = 3
-		}
-		public string myRemoteServer = "10.84.80.2";
 		public string myMachinName = System.Environment.MachineName;
 		private CodeDecode chrobj = new CodeDecode();
 		public string chatFolder = "";
@@ -74,19 +64,6 @@ namespace ITYaar
 		public HashSet<string> seenFiles = new HashSet<string>();
 
 		#endregion
-		public enumRunningMode GetRunnigMode()
-		{
-			// اینو بعدا باید بنویسی که آیتم رو از فایل تنظیمات بخونه فعلا صفر میدیم
-			//0 = تست
-			// 1 = محیط واقعی
-			return enumRunningMode.Develop_Mode;
-		}
-		/////////////////////////////////////////////////////////////////////Form events
-		public Boolean CheckForNewVersion()
-		{
-
-			return false;
-		}
 		private void FRMMain_Load(object sender, EventArgs e)
 		{
 			try
@@ -103,58 +80,56 @@ namespace ITYaar
 					Thread.Sleep(100);
 				    File.Create(myLogfile);
 				}
-
 				/////////////////////////////// فایل GlobalValuesText روچک میکنیم ببینیم هست یا نه
 				if (!File.Exists("GlobalValuesText.txt")) //اگه فایل کنارم نیست ینی تو مود اجرای واقعی هستم دیگه
 				{
 					//این قسمت بعدا توسعه پیدا کنه
 					AddLogToUI("فایل کانفیگ نیست که");
-					//return;
 					MessageBox.Show("فایل کانفیگ نیست که");
 					killMeNow();
 				}
 				else //فایل تنظیمات کنارمه 
 				{
-					myConfigurationDictionary = retriveMyConfiguration(); //تنظیمات لود بشه
-					ServerConfigDictiory = retriveServerConfiguration();													  //runningMode = GetRunnigMode();//تعیین حالت اجرا
-					if (myConfigurationDictionary["runningMode"] == "1")  //real environment mode
-					{
-						runningMode = enumRunningMode.Real_Environment_Mode;
-						Target1 = myConfigurationDictionary["Target1"];
-						chatFolder = myConfigurationDictionary["RoomsAddress"]; ; // مسیر پوشه چت
-					}
-					else  // developer mode
-					{
-						runningMode = enumRunningMode.Develop_Mode;
-						
-						Target1 = myConfigurationDictionary["Target1"];
-						chatFolder = myConfigurationDictionary["RoomsAddress"]; ; // مسیر پوشه چت
-					}
+					myConfigurationDictionary = retriveConfigFromFile("GlobalValuesText.txt"); //تنظیمات لود بشه
+					Target1 = myConfigurationDictionary["Target1"];
+					chatFolder = myConfigurationDictionary["RoomsAddress"]; ; // مسیر پوشه چت
                     ///////////////////////////////////////////////// چاپ متغیر ها
-                    AddLogToUI( "Running Mode = " + runningMode.ToString());
-                    AddLogToUI( "myPhisicalPath = " + myPhisicalPath.ToString());
-                    AddLogToUI( "myDirectory = " + myDirectory.ToString());
-                    AddLogToUI( "myName = " + myName.ToString());
-                    AddLogToUI( "myLogfile = " + myLogfile.ToString());
-                    AddLogToUI( "My version is " + myVersion);
+                    AddLogToUI( "My Phisical Path = " + myPhisicalPath.ToString());
+                    AddLogToUI( "My Directory = " + myDirectory.ToString());
+                    AddLogToUI( "My Name = " + myName.ToString());
+                    AddLogToUI( "My Log file = " + myLogfile.ToString());
                     AddLogToUI( "My Ip Adress= " + myIpAddress);
-				}
+                    AddLogToUI( "My Version = " + myVersion);
+                }
 				///////////////////   اول باید نسخه آپدیتور چک بشه اگر نیاز بود بروز رسانی کنه
-				//////////////////     نسخه خود چک شود و اگر قدیمی بود آپدیتور را اجرا و خود را ببنندد
-				//////////////////    اول استراتژی بچین
-				/////////////////  بریم برای اجرای خوانش پیام ها
+				CheckForNewVersion();
+                //////////////////     نسخه خود چک شود و اگر قدیمی بود آپدیتور را اجرا و خود را ببنندد
+                //////////////////    اول استراتژی بچین
+                /////////////////  بریم برای اجرای خوانش پیام ها
 
 
 
-			}
-			catch (Exception ee)
+            }
+            catch (Exception ee)
 			{
 				AddLogToUI( "Error: " + ee.Message);
 				//AddLogToUI(ee.Message);
 				throw;
 			}
 		}
-		void CleanOldMessages()
+        public Boolean CheckForNewVersion()
+        {
+			ServerConfigDictiory = retriveConfigFromFile(myConfigurationDictionary["NewVersionAddress"] + "\\info.txt");
+			string remoteNewVersion = ServerConfigDictiory["NewVersion"];
+            AddLogToUI("Remote New Version = " + remoteNewVersion);
+			if (remoteNewVersion != myVersion)
+			{
+				AddLogToUI("نسخه جدید ای تی یار اومده");
+				BTNUpdate.Visible = true;
+			}
+            return false;
+        }
+        void CleanOldMessages()
 		{
 			try
 			{
@@ -398,12 +373,14 @@ namespace ITYaar
 
 			return ip;
 		}
-		private Dictionary<string, string> retriveMyConfiguration() //if (File.Exists("GlobalValuesText.txt"))
+		private Dictionary<string, string> retriveConfigFromFile(string thisFile) //if (File.Exists("GlobalValuesText.txt"))
 		{
 			try
 			{
-				string[] lines = File.ReadAllLines("GlobalValuesText.txt");
-				return lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
+                //string[] lines = File.ReadAllLines("GlobalValuesText.txt");
+                string[] lines = File.ReadAllLines(thisFile); 
+
+                return lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
 			}
 			catch (Exception ee)
 			{
@@ -414,23 +391,7 @@ namespace ITYaar
 				throw;
 			}
 		}
-        private Dictionary<string, string> retriveServerConfiguration() 
-        {
-            try
-            {
-               // string serverInfoFile = myConfigurationDictionary["UpdatorAddress="] + "\\info.txt";
-                string[] lines = File.ReadAllLines("serverInfoFile");
-                return lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
-            }
-            catch (Exception ee)
-            {
-                var st = new StackTrace();
-                var me = st.GetFrame(0).GetMethod().Name;
-                AddLogToUI("ERROR: " + me + " : " + ee.Message);
-
-                throw;
-            }
-        }
+       
         void LoadMessages()
 		{
 			/////////// بهتره اول فایل ها رو از آخرین فایلی که توی کش هست به بعد بیارم توی کش

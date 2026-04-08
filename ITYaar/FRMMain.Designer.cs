@@ -73,7 +73,7 @@
             this.LB.Location = new System.Drawing.Point(273, 570);
             this.LB.Margin = new System.Windows.Forms.Padding(4);
             this.LB.Name = "LB";
-            this.LB.Size = new System.Drawing.Size(1173, 116);
+            this.LB.Size = new System.Drawing.Size(1173, 164);
             this.LB.TabIndex = 8;
             // 
             // TimerLoadingMSG
@@ -370,8 +370,9 @@
             this.BTNUpdate.Name = "BTNUpdate";
             this.BTNUpdate.Size = new System.Drawing.Size(249, 41);
             this.BTNUpdate.TabIndex = 18;
-            this.BTNUpdate.Text = "----";
+            this.BTNUpdate.Text = "بروز رسانی نسخه جدید";
             this.BTNUpdate.UseVisualStyleBackColor = true;
+            this.BTNUpdate.Visible = false;
             this.BTNUpdate.Click += new System.EventHandler(this.BTNUpdate_Click);
             // 
             // FRMMain
@@ -379,7 +380,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1464, 693);
+            this.ClientSize = new System.Drawing.Size(1464, 742);
             this.Controls.Add(this.BTNUpdate);
             this.Controls.Add(this.BTNCleanOldMessages);
             this.Controls.Add(this.LB);
