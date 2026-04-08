@@ -112,8 +112,6 @@ namespace ITYaar
 					if (myConfigurationDictionary["runningMode"] == "1")  //real environment mode
 					{
 						runningMode = enumRunningMode.Real_Environment_Mode;
-						//local_Update_Path = myConfigurationDictionary["RealEnv_local_Update_Path"];
-						//Remote_Update_Path = myConfigurationDictionary["RealEnv_Remote_Update_Path"];
 						Target1 = myConfigurationDictionary["Target1"];
 						chatFolder = myConfigurationDictionary["RoomsAddress"]; ; // مسیر پوشه چت
 					}
@@ -143,7 +141,7 @@ namespace ITYaar
 			}
 			catch (Exception ee)
 			{
-				AddlogToFile( "Error: " + ee.Message);
+				AddLogToUI( "Error: " + ee.Message);
 				//AddLogToUI(ee.Message);
 				throw;
 			}
@@ -169,7 +167,7 @@ namespace ITYaar
 			}
 			catch (Exception ex)
 			{
-				AddlogToFile( "CleanOldMessages Error: " + ex.Message);
+				AddLogToUI( "CleanOldMessages Error: " + ex.Message);
 			}
 		}
 
@@ -302,7 +300,7 @@ namespace ITYaar
             AddLogToUI( "TimerLoadingMSG Started.");
 
 		}
-		private Boolean AddlogToFile( string massage)
+		private Boolean AddlogToFile1( string massage)
 		{
 			try
 			{
@@ -407,7 +405,7 @@ namespace ITYaar
 			{
 				var st = new StackTrace();
 				var me = st.GetFrame(0).GetMethod().Name;
-				AddlogToFile( "ERROR: " + me + " : " + ee.Message);
+				AddLogToUI( "ERROR: " + me + " : " + ee.Message);
 
 				throw;
 			}
@@ -439,7 +437,7 @@ namespace ITYaar
 			}
 			catch (Exception ex)
 			{
-				AddlogToFile( "Error: " + ex.Message);
+				AddLogToUI( "Error: " + ex.Message);
 			}
 			
 		}
@@ -484,11 +482,11 @@ namespace ITYaar
 			{
 				//    AddlogToFile( "Sending...");
 				File.WriteAllText(Path.Combine(chatFolder, fname), message);
-				AddlogToFile( "Sent...");
+				AddLogToUI( "Sent...");
 			}
 			catch (Exception ex)
 			{
-				AddlogToFile( "Error: Write error." + ex.Message);
+                AddLogToUI( "Error: Write error." + ex.Message);
 				//MessageBox.Show("خطا در نوشتن پیام:\n" + ex.Message);
 			}
 
@@ -516,13 +514,9 @@ namespace ITYaar
 		private void BTNCleanOldMessages_Click(object sender, EventArgs e)
 		{
 			CleanOldMessages();
-			//seenFiles.Clear();
-			//RTBChatBox.Clear();
-			//LoadMessages();
-			//StartTimerLoadingMSG();
 			seenFiles.Clear();
 			RTBChatBox.Clear();
-			AddlogToFile( "Old MSG has been delete.");
+			AddLogToUI( "Old MSG has been delete.");
 			ReadyBox.Enabled = true;
 			BTNRefresh.Enabled = true;
 			BTNSend.Enabled = true;
