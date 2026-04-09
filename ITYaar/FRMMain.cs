@@ -50,12 +50,13 @@ namespace ITYaar
 		public string myFullPhisicalPath = Assembly.GetExecutingAssembly().Location;
 		public string myPhisicalPath = Assembly.GetExecutingAssembly().Location;//OK
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        public string myFileName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);
+        //public string myFileName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);
 		public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
 		public string local_Update_Path;
 		public string Remote_Update_Path;
 		public string Target1;
 		public string myLogfile;//="ITYaar.log.txt";
+		public string myConfigFile;// = "ITYaar.config";
         public Dictionary<string, string> myConfigurationDictionary, ServerConfigDictiory;
 		public string myMachinName = System.Environment.MachineName;
 		private CodeDecode chrobj = new CodeDecode();
@@ -71,8 +72,9 @@ namespace ITYaar
 				//////////////////////////////// تنظیمات اولیه ست شود
 				this.Text = " برنامه آی تی یار نسخه = " + myVersion;
                 myLogfile = myName + ".log";
-                myIpAddress = GetLocalIP();
-
+				myConfigFile = myName + ".config.txt";
+				//MessageBox.Show(myConfigFile);
+				myIpAddress = GetLocalIP();
 				/////////////////////////////// درصورت وجود لاگ فایل پاک شود و بعد دوباره ایجاد شود
 				if (File.Exists(myLogfile))
 				{
@@ -80,8 +82,8 @@ namespace ITYaar
 					Thread.Sleep(100);
 				    File.Create(myLogfile);
 				}
-				/////////////////////////////// فایل GlobalValuesText روچک میکنیم ببینیم هست یا نه
-				if (!File.Exists("GlobalValuesText.txt")) //اگه فایل کنارم نیست ینی تو مود اجرای واقعی هستم دیگه
+                /////////////////////////////// فایل ITYaar.config روچک میکنیم ببینیم هست یا نه
+                if (!File.Exists(myConfigFile)) //اگه فایل کنارم نیست ینی تو مود اجرای واقعی هستم دیگه
 				{
 					//این قسمت بعدا توسعه پیدا کنه
 					AddLogToUI("فایل کانفیگ نیست که");
@@ -90,7 +92,7 @@ namespace ITYaar
 				}
 				else //فایل تنظیمات کنارمه 
 				{
-					myConfigurationDictionary = retriveConfigFromFile("GlobalValuesText.txt"); //تنظیمات لود بشه
+					myConfigurationDictionary = retriveConfigFromFile(myConfigFile); //تنظیمات لود بشه
 					Target1 = myConfigurationDictionary["Target1"];
 					chatFolder = myConfigurationDictionary["RoomsAddress"]; ; // مسیر پوشه چت
                     ///////////////////////////////////////////////// چاپ متغیر ها
@@ -100,14 +102,13 @@ namespace ITYaar
                     AddLogToUI( "My Log file = " + myLogfile.ToString());
                     AddLogToUI( "My Ip Adress= " + myIpAddress);
                     AddLogToUI( "My Version = " + myVersion);
+					AddLogToUI("My Config file = " + myConfigFile);
                 }
 				///////////////////   اول باید نسخه آپدیتور چک بشه اگر نیاز بود بروز رسانی کنه
 				CheckForNewVersion();
                 //////////////////     نسخه خود چک شود و اگر قدیمی بود آپدیتور را اجرا و خود را ببنندد
                 //////////////////    اول استراتژی بچین
                 /////////////////  بریم برای اجرای خوانش پیام ها
-
-
 
             }
             catch (Exception ee)
@@ -373,13 +374,11 @@ namespace ITYaar
 
 			return ip;
 		}
-		private Dictionary<string, string> retriveConfigFromFile(string thisFile) //if (File.Exists("GlobalValuesText.txt"))
-		{
+		private Dictionary<string, string> retriveConfigFromFile(string thisFile) //if (File.Exists(myConfigFile))
+        {
 			try
 			{
-                //string[] lines = File.ReadAllLines("GlobalValuesText.txt");
                 string[] lines = File.ReadAllLines(thisFile); 
-
                 return lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
 			}
 			catch (Exception ee)
@@ -387,7 +386,6 @@ namespace ITYaar
 				var st = new StackTrace();
 				var me = st.GetFrame(0).GetMethod().Name;
 				AddLogToUI( "ERROR: " + me + " : " + ee.Message);
-
 				throw;
 			}
 		}
