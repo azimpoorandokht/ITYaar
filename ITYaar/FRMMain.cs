@@ -47,7 +47,7 @@ namespace ITYaar
 		public string myIpAddress;
 		public Boolean programmingMode = false;
 		public string myVersion = "14050119.0000";
-		public string myPhisicalPath = Assembly.GetExecutingAssembly().Location;//OK
+		//public string myPhisicalPath = Assembly.GetExecutingAssembly().Location;//OK
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
 		//public string local_Update_Path;
@@ -91,13 +91,13 @@ namespace ITYaar
 					myConfigurationDictionary = retriveConfigFromFile(myConfigFile); //تنظیمات لود بشه
 					chatFolder = myConfigurationDictionary["RoomsAddress"]; ; // مسیر پوشه چت
                     ///////////////////////////////////////////////// چاپ متغیر ها
-                    AddLogToUI( "My Phisical Path = " + myPhisicalPath.ToString());
+                    //AddLogToUI( "My Phisical Path = " + myPhisicalPath.ToString());
                     AddLogToUI( "My Directory = " + myDirectory.ToString());
                     AddLogToUI( "My Name = " + myName.ToString());
                     AddLogToUI( "My Log file = " + myLogfile.ToString());
                     AddLogToUI( "My Ip Adress= " + myIpAddress);
-                    AddLogToUI( "My Version = " + myVersion);
-					AddLogToUI("My Config file = " + myConfigFile);
+                    AddLogToUI("My Config file = " + myConfigFile);
+                    AddLogToUI("My Version = " + myVersion);
                 }
 				///////////////////   اول باید نسخه آپدیتور چک بشه اگر نیاز بود بروز رسانی کنه
 				if (CheckForNewVersion())
