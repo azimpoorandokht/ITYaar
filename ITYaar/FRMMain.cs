@@ -46,14 +46,12 @@ namespace ITYaar
 		public System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
 		public string myIpAddress;
 		public Boolean programmingMode = false;
-		public string myVersion = "14050115.0000";
-		//public string myFullPhisicalPath = Assembly.GetExecutingAssembly().Location;
+		public string myVersion = "14050119.0000";
 		public string myPhisicalPath = Assembly.GetExecutingAssembly().Location;//OK
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
-		public string local_Update_Path;
-		public string Remote_Update_Path;
-		//public string Target1;
+		//public string local_Update_Path;
+		//public string Remote_Update_Path;
 		public string myLogfile;
 		public string myConfigFile;
         public Dictionary<string, string> myConfigurationDictionary, ServerConfigDictiory;
@@ -91,7 +89,6 @@ namespace ITYaar
 				else //فایل تنظیمات کنارمه 
 				{
 					myConfigurationDictionary = retriveConfigFromFile(myConfigFile); //تنظیمات لود بشه
-					//Target1 = myConfigurationDictionary["Target1"];
 					chatFolder = myConfigurationDictionary["RoomsAddress"]; ; // مسیر پوشه چت
                     ///////////////////////////////////////////////// چاپ متغیر ها
                     AddLogToUI( "My Phisical Path = " + myPhisicalPath.ToString());
@@ -103,7 +100,12 @@ namespace ITYaar
 					AddLogToUI("My Config file = " + myConfigFile);
                 }
 				///////////////////   اول باید نسخه آپدیتور چک بشه اگر نیاز بود بروز رسانی کنه
-				CheckForNewVersion();
+				if (CheckForNewVersion())
+				{
+                    AddLogToUI("نسخه جدید ای تی یار اومده");
+                    BTNUpdate.Visible = true;
+                    //Update();
+				}
                 //////////////////     نسخه خود چک شود و اگر قدیمی بود آپدیتور را اجرا و خود را ببنندد
                 //////////////////    اول استراتژی بچین
                 /////////////////  بریم برای اجرای خوانش پیام ها
@@ -121,12 +123,7 @@ namespace ITYaar
 			ServerConfigDictiory = retriveConfigFromFile(myConfigurationDictionary["NewVersionAddress"] + "\\info.txt");
 			string remoteNewVersion = ServerConfigDictiory["NewVersion"];
             AddLogToUI("Remote New Version = " + remoteNewVersion);
-			if (remoteNewVersion != myVersion)
-			{
-				AddLogToUI("نسخه جدید ای تی یار اومده");
-				BTNUpdate.Visible = true;
-			}
-            return false;
+			return remoteNewVersion != myVersion;
         }
         void CleanOldMessages()
 		{
@@ -469,17 +466,14 @@ namespace ITYaar
 
 			ReadyBox.Clear();
 		}
-
 		private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
 		{
 
 		}
-
 		private void راهنماToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 
 		}
-
 		private void دربارهبرنامهToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			FRMMyInfo f = new FRMMyInfo();
@@ -497,15 +491,18 @@ namespace ITYaar
 			LoadMessages();
 			StartTimerLoadingMSG();
 		}
-
         private void BTNUpdate_Click(object sender, EventArgs e)
         {
 			// اول چک کن اپدیتور کنارت هست یا نه اگه نبود از سرور بگیرش
 			//بعد
 			// اگه نسخه جدید از خودت بود برو برای اپدیت
 			// اینجا باید مکانیزم برای تشخیص نسخه بریزی
-        }
+			UpdateMe();
+		}
+		private void UpdateMe()
+		{
 
+		}
         void AddMessageToUI(string msg)
 		{
 			if (InvokeRequired)
