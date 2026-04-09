@@ -47,23 +47,21 @@ namespace ITYaar
 		public string myIpAddress;
 		public Boolean programmingMode = false;
 		public string myVersion = "14050115.0000";
-		public string myFullPhisicalPath = Assembly.GetExecutingAssembly().Location;
+		//public string myFullPhisicalPath = Assembly.GetExecutingAssembly().Location;
 		public string myPhisicalPath = Assembly.GetExecutingAssembly().Location;//OK
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        //public string myFileName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);
-		public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
+        public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
 		public string local_Update_Path;
 		public string Remote_Update_Path;
-		public string Target1;
-		public string myLogfile;//="ITYaar.log.txt";
-		public string myConfigFile;// = "ITYaar.config";
+		//public string Target1;
+		public string myLogfile;
+		public string myConfigFile;
         public Dictionary<string, string> myConfigurationDictionary, ServerConfigDictiory;
 		public string myMachinName = System.Environment.MachineName;
 		private CodeDecode chrobj = new CodeDecode();
 		public string chatFolder = "";
 		public DateTime lastCheck = DateTime.MinValue;
 		public HashSet<string> seenFiles = new HashSet<string>();
-
 		#endregion
 		private void FRMMain_Load(object sender, EventArgs e)
 		{
@@ -82,7 +80,7 @@ namespace ITYaar
 					Thread.Sleep(100);
 				    File.Create(myLogfile);
 				}
-                /////////////////////////////// فایل ITYaar.config روچک میکنیم ببینیم هست یا نه
+                /////////////////////////////// فایل تنظیمات روچک میکنیم ببینیم هست یا نه
                 if (!File.Exists(myConfigFile)) //اگه فایل کنارم نیست ینی تو مود اجرای واقعی هستم دیگه
 				{
 					//این قسمت بعدا توسعه پیدا کنه
@@ -93,7 +91,7 @@ namespace ITYaar
 				else //فایل تنظیمات کنارمه 
 				{
 					myConfigurationDictionary = retriveConfigFromFile(myConfigFile); //تنظیمات لود بشه
-					Target1 = myConfigurationDictionary["Target1"];
+					//Target1 = myConfigurationDictionary["Target1"];
 					chatFolder = myConfigurationDictionary["RoomsAddress"]; ; // مسیر پوشه چت
                     ///////////////////////////////////////////////// چاپ متغیر ها
                     AddLogToUI( "My Phisical Path = " + myPhisicalPath.ToString());
@@ -389,7 +387,6 @@ namespace ITYaar
 				throw;
 			}
 		}
-       
         void LoadMessages()
 		{
 			/////////// بهتره اول فایل ها رو از آخرین فایلی که توی کش هست به بعد بیارم توی کش
