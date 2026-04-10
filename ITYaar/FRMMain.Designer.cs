@@ -35,7 +35,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnKillSession = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.TXTKey = new System.Windows.Forms.TextBox();
@@ -57,9 +56,7 @@
             this.دربارهبرنامهToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.نسخجدیدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BTNCleanOldMessages = new System.Windows.Forms.Button();
-            this.BTNUpdate = new System.Windows.Forms.Button();
             this.tabPage1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDTalar)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -70,10 +67,10 @@
             // 
             this.LB.FormattingEnabled = true;
             this.LB.ItemHeight = 16;
-            this.LB.Location = new System.Drawing.Point(273, 570);
+            this.LB.Location = new System.Drawing.Point(15, 654);
             this.LB.Margin = new System.Windows.Forms.Padding(4);
             this.LB.Name = "LB";
-            this.LB.Size = new System.Drawing.Size(1173, 164);
+            this.LB.Size = new System.Drawing.Size(1431, 164);
             this.LB.TabIndex = 8;
             // 
             // TimerLoadingMSG
@@ -104,7 +101,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.btnKillSession);
             this.tabPage1.Location = new System.Drawing.Point(4, 30);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
@@ -114,24 +111,13 @@
             this.tabPage1.Text = "عملیات";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnKillSession);
-            this.groupBox1.Location = new System.Drawing.Point(1013, 7);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(429, 441);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            // 
             // btnKillSession
             // 
             this.btnKillSession.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnKillSession.Location = new System.Drawing.Point(13, 27);
+            this.btnKillSession.Location = new System.Drawing.Point(12, 8);
             this.btnKillSession.Margin = new System.Windows.Forms.Padding(4);
             this.btnKillSession.Name = "btnKillSession";
-            this.btnKillSession.Size = new System.Drawing.Size(391, 49);
+            this.btnKillSession.Size = new System.Drawing.Size(249, 49);
             this.btnKillSession.TabIndex = 4;
             this.btnKillSession.Text = "رفع مشکل ورود به خوددریافت";
             this.btnKillSession.UseVisualStyleBackColor = true;
@@ -140,6 +126,7 @@
             // 
             this.tabPage4.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.tabPage4.Controls.Add(this.TXTKey);
+            this.tabPage4.Controls.Add(this.BTNCleanOldMessages);
             this.tabPage4.Controls.Add(this.TXTUserName);
             this.tabPage4.Controls.Add(this.ReadyBox);
             this.tabPage4.Controls.Add(this.RTBChatBox);
@@ -155,13 +142,13 @@
             this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Size = new System.Drawing.Size(1456, 501);
+            this.tabPage4.Size = new System.Drawing.Size(1456, 584);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "استخبارات";
             // 
             // TXTKey
             // 
-            this.TXTKey.Location = new System.Drawing.Point(848, 17);
+            this.TXTKey.Location = new System.Drawing.Point(848, 16);
             this.TXTKey.Margin = new System.Windows.Forms.Padding(4);
             this.TXTKey.Name = "TXTKey";
             this.TXTKey.Size = new System.Drawing.Size(296, 28);
@@ -172,7 +159,7 @@
             // TXTUserName
             // 
             this.TXTUserName.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.TXTUserName.Location = new System.Drawing.Point(459, 17);
+            this.TXTUserName.Location = new System.Drawing.Point(459, 15);
             this.TXTUserName.Margin = new System.Windows.Forms.Padding(4);
             this.TXTUserName.Name = "TXTUserName";
             this.TXTUserName.Size = new System.Drawing.Size(301, 30);
@@ -183,7 +170,7 @@
             // ReadyBox
             // 
             this.ReadyBox.Enabled = false;
-            this.ReadyBox.Location = new System.Drawing.Point(268, 395);
+            this.ReadyBox.Location = new System.Drawing.Point(268, 487);
             this.ReadyBox.Margin = new System.Windows.Forms.Padding(4);
             this.ReadyBox.Name = "ReadyBox";
             this.ReadyBox.Size = new System.Drawing.Size(1173, 89);
@@ -196,14 +183,14 @@
             this.RTBChatBox.Location = new System.Drawing.Point(11, 58);
             this.RTBChatBox.Margin = new System.Windows.Forms.Padding(4);
             this.RTBChatBox.Name = "RTBChatBox";
-            this.RTBChatBox.Size = new System.Drawing.Size(1431, 325);
+            this.RTBChatBox.Size = new System.Drawing.Size(1431, 416);
             this.RTBChatBox.TabIndex = 3;
             this.RTBChatBox.Text = "";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1343, 18);
+            this.label3.Location = new System.Drawing.Point(1343, 20);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 21);
@@ -212,10 +199,10 @@
             // 
             // BTNLogin
             // 
-            this.BTNLogin.Location = new System.Drawing.Point(341, 14);
+            this.BTNLogin.Location = new System.Drawing.Point(341, 10);
             this.BTNLogin.Margin = new System.Windows.Forms.Padding(4);
             this.BTNLogin.Name = "BTNLogin";
-            this.BTNLogin.Size = new System.Drawing.Size(109, 37);
+            this.BTNLogin.Size = new System.Drawing.Size(110, 40);
             this.BTNLogin.TabIndex = 12;
             this.BTNLogin.Text = "ورود";
             this.BTNLogin.UseVisualStyleBackColor = true;
@@ -224,7 +211,7 @@
             // username
             // 
             this.username.AutoSize = true;
-            this.username.Location = new System.Drawing.Point(768, 22);
+            this.username.Location = new System.Drawing.Point(768, 20);
             this.username.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(72, 21);
@@ -234,7 +221,7 @@
             // BTNRefresh
             // 
             this.BTNRefresh.Enabled = false;
-            this.BTNRefresh.Location = new System.Drawing.Point(11, 391);
+            this.BTNRefresh.Location = new System.Drawing.Point(11, 482);
             this.BTNRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.BTNRefresh.Name = "BTNRefresh";
             this.BTNRefresh.Size = new System.Drawing.Size(100, 94);
@@ -247,7 +234,7 @@
             // 
             this.NUDTalar.Enabled = false;
             this.NUDTalar.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.NUDTalar.Location = new System.Drawing.Point(1205, 17);
+            this.NUDTalar.Location = new System.Drawing.Point(1205, 15);
             this.NUDTalar.Margin = new System.Windows.Forms.Padding(4);
             this.NUDTalar.Name = "NUDTalar";
             this.NUDTalar.Size = new System.Drawing.Size(131, 30);
@@ -271,7 +258,7 @@
             // BTNSend
             // 
             this.BTNSend.Enabled = false;
-            this.BTNSend.Location = new System.Drawing.Point(125, 391);
+            this.BTNSend.Location = new System.Drawing.Point(125, 482);
             this.BTNSend.Margin = new System.Windows.Forms.Padding(4);
             this.BTNSend.Name = "BTNSend";
             this.BTNSend.Size = new System.Drawing.Size(135, 94);
@@ -283,7 +270,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1152, 22);
+            this.label1.Location = new System.Drawing.Point(1152, 20);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 21);
@@ -298,13 +285,13 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 30);
+            this.tabControl1.Location = new System.Drawing.Point(0, 28);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tabControl1.RightToLeftLayout = true;
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1464, 535);
+            this.tabControl1.Size = new System.Drawing.Size(1464, 618);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 7;
             // 
@@ -315,7 +302,7 @@
             this.راهنماToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1464, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1464, 28);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -324,65 +311,51 @@
             // 
             this.راهنماToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.راهنماToolStripMenuItem1,
-            this.دربارهبرنامهToolStripMenuItem,
-            this.نسخجدیدToolStripMenuItem});
+            this.نسخجدیدToolStripMenuItem,
+            this.دربارهبرنامهToolStripMenuItem});
             this.راهنماToolStripMenuItem.Name = "راهنماToolStripMenuItem";
-            this.راهنماToolStripMenuItem.Size = new System.Drawing.Size(76, 26);
+            this.راهنماToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.راهنماToolStripMenuItem.Text = "اطلاعات";
             this.راهنماToolStripMenuItem.Click += new System.EventHandler(this.راهنماToolStripMenuItem_Click);
             // 
             // راهنماToolStripMenuItem1
             // 
             this.راهنماToolStripMenuItem1.Name = "راهنماToolStripMenuItem1";
-            this.راهنماToolStripMenuItem1.Size = new System.Drawing.Size(168, 26);
+            this.راهنماToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.راهنماToolStripMenuItem1.Text = "راهنما";
             // 
             // دربارهبرنامهToolStripMenuItem
             // 
             this.دربارهبرنامهToolStripMenuItem.Name = "دربارهبرنامهToolStripMenuItem";
-            this.دربارهبرنامهToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.دربارهبرنامهToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.دربارهبرنامهToolStripMenuItem.Text = "درباره برنامه";
             this.دربارهبرنامهToolStripMenuItem.Click += new System.EventHandler(this.دربارهبرنامهToolStripMenuItem_Click);
             // 
             // نسخجدیدToolStripMenuItem
             // 
             this.نسخجدیدToolStripMenuItem.Name = "نسخجدیدToolStripMenuItem";
-            this.نسخجدیدToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
-            this.نسخجدیدToolStripMenuItem.Text = "نسخ جدید";
+            this.نسخجدیدToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.نسخجدیدToolStripMenuItem.Text = "نسخه جدید";
+            this.نسخجدیدToolStripMenuItem.Click += new System.EventHandler(this.نسخجدیدToolStripMenuItem_Click);
             // 
             // BTNCleanOldMessages
             // 
             this.BTNCleanOldMessages.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.BTNCleanOldMessages.Location = new System.Drawing.Point(16, 572);
+            this.BTNCleanOldMessages.Location = new System.Drawing.Point(21, 9);
             this.BTNCleanOldMessages.Margin = new System.Windows.Forms.Padding(4);
             this.BTNCleanOldMessages.Name = "BTNCleanOldMessages";
-            this.BTNCleanOldMessages.Size = new System.Drawing.Size(249, 41);
+            this.BTNCleanOldMessages.Size = new System.Drawing.Size(249, 40);
             this.BTNCleanOldMessages.TabIndex = 17;
             this.BTNCleanOldMessages.Text = "حذف پیام های قدیمی";
             this.BTNCleanOldMessages.UseVisualStyleBackColor = true;
             this.BTNCleanOldMessages.Click += new System.EventHandler(this.BTNCleanOldMessages_Click);
-            // 
-            // BTNUpdate
-            // 
-            this.BTNUpdate.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.BTNUpdate.Location = new System.Drawing.Point(16, 620);
-            this.BTNUpdate.Margin = new System.Windows.Forms.Padding(4);
-            this.BTNUpdate.Name = "BTNUpdate";
-            this.BTNUpdate.Size = new System.Drawing.Size(249, 41);
-            this.BTNUpdate.TabIndex = 18;
-            this.BTNUpdate.Text = "بروز رسانی نسخه جدید";
-            this.BTNUpdate.UseVisualStyleBackColor = true;
-            this.BTNUpdate.Visible = false;
-            this.BTNUpdate.Click += new System.EventHandler(this.BTNUpdate_Click);
             // 
             // FRMMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1464, 742);
-            this.Controls.Add(this.BTNUpdate);
-            this.Controls.Add(this.BTNCleanOldMessages);
+            this.ClientSize = new System.Drawing.Size(1464, 831);
             this.Controls.Add(this.LB);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
@@ -393,7 +366,6 @@
             this.Text = "-";
             this.Load += new System.EventHandler(this.FRMMain_Load);
             this.tabPage1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDTalar)).EndInit();
@@ -411,7 +383,6 @@
 		private System.Windows.Forms.TabPage tabPage3;
 		private System.Windows.Forms.TabPage tabPage2;
 		private System.Windows.Forms.TabPage tabPage1;
-		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.Button btnKillSession;
 		private System.Windows.Forms.TabPage tabPage4;
 		private System.Windows.Forms.TextBox TXTKey;
@@ -432,7 +403,6 @@
 		private System.Windows.Forms.ToolStripMenuItem راهنماToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem دربارهبرنامهToolStripMenuItem;
 		private System.Windows.Forms.Button BTNCleanOldMessages;
-		private System.Windows.Forms.Button BTNUpdate;
 		private System.Windows.Forms.ToolStripMenuItem نسخجدیدToolStripMenuItem;
 	}
 }

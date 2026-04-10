@@ -30,8 +30,6 @@ using static System.Windows.Forms.AxHost;
 حذف چت های روز های قبل
 راهاندازی تالار های متعدد
 کلید که عوض شد باید خودش بره برای پروسه بازخوانی
-
-
  
  */
 namespace ITYaar
@@ -46,7 +44,7 @@ namespace ITYaar
 		public System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
 		public string myIpAddress;
 		public Boolean programmingMode = false;
-		public string myVersion = "14050119.0000";
+		public string myVersion = "2";
 		//public string myPhisicalPath = Assembly.GetExecutingAssembly().Location;//OK
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
@@ -331,7 +329,8 @@ namespace ITYaar
 			StartTimerLoadingMSG();
 		}
 		///////////////////////////////////////////////////////////////////////// Function
-		private void killMeNow()
+		private void killMeNow
+			()
 		{
 			if (!programmingMode)
 			{
@@ -494,15 +493,15 @@ namespace ITYaar
         private void BTNUpdate_Click(object sender, EventArgs e)
         {
 			// اول چک کن اپدیتور کنارت هست یا نه اگه نبود از سرور بگیرش
-			//بعد
-			// اگه نسخه جدید از خودت بود برو برای اپدیت
-			// اینجا باید مکانیزم برای تشخیص نسخه بریزی
-			UpdateMe();
-		}
-		private void UpdateMe()
-		{
+			
+        }
 
-		}
+        private void نسخجدیدToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("AzUpdator.exe");
+            killMeNow();
+        }
+
         void AddMessageToUI(string msg)
 		{
 			if (InvokeRequired)
