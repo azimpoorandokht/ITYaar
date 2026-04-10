@@ -65,6 +65,7 @@
             // 
             // LB
             // 
+            this.LB.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.LB.FormattingEnabled = true;
             this.LB.ItemHeight = 16;
             this.LB.Location = new System.Drawing.Point(15, 654);
@@ -83,7 +84,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 30);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1456, 501);
+            this.tabPage3.Size = new System.Drawing.Size(1456, 584);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "گزارشات";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -94,7 +95,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(1456, 501);
+            this.tabPage2.Size = new System.Drawing.Size(1456, 584);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "سامانه ها";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -106,18 +107,18 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(1456, 501);
+            this.tabPage1.Size = new System.Drawing.Size(1456, 584);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "عملیات";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // btnKillSession
             // 
-            this.btnKillSession.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnKillSession.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnKillSession.Location = new System.Drawing.Point(12, 8);
             this.btnKillSession.Margin = new System.Windows.Forms.Padding(4);
             this.btnKillSession.Name = "btnKillSession";
-            this.btnKillSession.Size = new System.Drawing.Size(249, 49);
+            this.btnKillSession.Size = new System.Drawing.Size(270, 49);
             this.btnKillSession.TabIndex = 4;
             this.btnKillSession.Text = "رفع مشکل ورود به خوددریافت";
             this.btnKillSession.UseVisualStyleBackColor = true;
@@ -138,20 +139,21 @@
             this.tabPage4.Controls.Add(this.label2);
             this.tabPage4.Controls.Add(this.BTNSend);
             this.tabPage4.Controls.Add(this.label1);
-            this.tabPage4.Location = new System.Drawing.Point(4, 30);
+            this.tabPage4.Location = new System.Drawing.Point(4, 31);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Size = new System.Drawing.Size(1456, 584);
+            this.tabPage4.Size = new System.Drawing.Size(1456, 583);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "استخبارات";
             // 
             // TXTKey
             // 
+            this.TXTKey.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.TXTKey.Location = new System.Drawing.Point(848, 16);
             this.TXTKey.Margin = new System.Windows.Forms.Padding(4);
             this.TXTKey.Name = "TXTKey";
-            this.TXTKey.Size = new System.Drawing.Size(296, 28);
+            this.TXTKey.Size = new System.Drawing.Size(296, 30);
             this.TXTKey.TabIndex = 0;
             this.TXTKey.Text = "MyKey";
             this.TXTKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TXTUserName_KeyDown);
@@ -190,10 +192,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label3.Location = new System.Drawing.Point(1343, 20);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 21);
+            this.label3.Size = new System.Drawing.Size(106, 23);
             this.label3.TabIndex = 13;
             this.label3.Text = "شماره تالار:";
             // 
@@ -211,10 +214,11 @@
             // username
             // 
             this.username.AutoSize = true;
+            this.username.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.username.Location = new System.Drawing.Point(768, 20);
             this.username.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.username.Name = "username";
-            this.username.Size = new System.Drawing.Size(72, 21);
+            this.username.Size = new System.Drawing.Size(80, 23);
             this.username.TabIndex = 11;
             this.username.Text = "نام کاربر:";
             // 
@@ -251,7 +255,7 @@
             this.label2.Location = new System.Drawing.Point(1617, 17);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 21);
+            this.label2.Size = new System.Drawing.Size(106, 23);
             this.label2.TabIndex = 6;
             this.label2.Text = "شماره تالار:";
             // 
@@ -270,10 +274,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label1.Location = new System.Drawing.Point(1152, 20);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 21);
+            this.label1.Size = new System.Drawing.Size(50, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "کلید:";
             // 
@@ -284,8 +289,8 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 28);
+            this.tabControl1.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.tabControl1.Location = new System.Drawing.Point(0, 30);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -302,7 +307,7 @@
             this.راهنماToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1464, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1464, 30);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -314,7 +319,7 @@
             this.نسخجدیدToolStripMenuItem,
             this.دربارهبرنامهToolStripMenuItem});
             this.راهنماToolStripMenuItem.Name = "راهنماToolStripMenuItem";
-            this.راهنماToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
+            this.راهنماToolStripMenuItem.Size = new System.Drawing.Size(76, 26);
             this.راهنماToolStripMenuItem.Text = "اطلاعات";
             this.راهنماToolStripMenuItem.Click += new System.EventHandler(this.راهنماToolStripMenuItem_Click);
             // 

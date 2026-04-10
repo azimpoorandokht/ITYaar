@@ -101,7 +101,7 @@ namespace ITYaar
 				if (CheckForNewVersion())
 				{
                     AddLogToUI("نسخه جدید ای تی یار اومده");
-                    BTNUpdate.Visible = true;
+                    //BTNUpdate.Visible = true;
                     //Update();
 				}
                 //////////////////     نسخه خود چک شود و اگر قدیمی بود آپدیتور را اجرا و خود را ببنندد
