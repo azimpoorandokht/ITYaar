@@ -56,6 +56,8 @@
             this.دربارهبرنامهToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.نسخجدیدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BTNCleanOldMessages = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDTalar)).BeginInit();
@@ -81,21 +83,21 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 30);
+            this.tabPage3.Location = new System.Drawing.Point(4, 31);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1456, 584);
+            this.tabPage3.Size = new System.Drawing.Size(1456, 583);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "گزارشات";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 30);
+            this.tabPage2.Location = new System.Drawing.Point(4, 31);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(1456, 584);
+            this.tabPage2.Size = new System.Drawing.Size(1456, 583);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "سامانه ها";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -103,11 +105,11 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.btnKillSession);
-            this.tabPage1.Location = new System.Drawing.Point(4, 30);
+            this.tabPage1.Location = new System.Drawing.Point(4, 31);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(1456, 584);
+            this.tabPage1.Size = new System.Drawing.Size(1456, 583);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "عملیات";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -156,7 +158,7 @@
             this.TXTKey.Size = new System.Drawing.Size(296, 30);
             this.TXTKey.TabIndex = 0;
             this.TXTKey.Text = "MyKey";
-            this.TXTKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TXTUserName_KeyDown);
+            this.TXTKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TXTKey_KeyDown);
             // 
             // TXTUserName
             // 
@@ -182,6 +184,7 @@
             // 
             // RTBChatBox
             // 
+            this.RTBChatBox.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.RTBChatBox.Location = new System.Drawing.Point(11, 58);
             this.RTBChatBox.Margin = new System.Windows.Forms.Padding(4);
             this.RTBChatBox.Name = "RTBChatBox";
@@ -288,8 +291,11 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.tabControl1.ItemSize = new System.Drawing.Size(120, 27);
             this.tabControl1.Location = new System.Drawing.Point(0, 30);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
@@ -297,7 +303,6 @@
             this.tabControl1.RightToLeftLayout = true;
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1464, 618);
-            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 7;
             // 
             // menuStrip1
@@ -355,6 +360,26 @@
             this.BTNCleanOldMessages.UseVisualStyleBackColor = true;
             this.BTNCleanOldMessages.Click += new System.EventHandler(this.BTNCleanOldMessages_Click);
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Location = new System.Drawing.Point(4, 31);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1456, 583);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "ارسال و دریافت B";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Location = new System.Drawing.Point(4, 31);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(1456, 583);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "برداشتن کنترل ها";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
             // FRMMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -409,6 +434,8 @@
 		private System.Windows.Forms.ToolStripMenuItem دربارهبرنامهToolStripMenuItem;
 		private System.Windows.Forms.Button BTNCleanOldMessages;
 		private System.Windows.Forms.ToolStripMenuItem نسخجدیدToolStripMenuItem;
-	}
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPage6;
+    }
 }
 

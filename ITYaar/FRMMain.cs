@@ -309,11 +309,7 @@ namespace ITYaar
 		{
 			if (e.KeyCode == Keys.Enter)
 			{
-				LoadMessages();
-				StartTimerLoadingMSG();
-				ReadyBox.Enabled = true;
-				BTNRefresh.Enabled = true;
-				BTNSend.Enabled = true;
+				BTNLogin.Focus();
 			}
 		}
 		private void BTNLogin_Click(object sender, EventArgs e)
@@ -502,6 +498,14 @@ namespace ITYaar
             killMeNow();
         }
 
+		private void TXTKey_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				TXTUserName.Focus();
+
+			}
+		}
         void AddMessageToUI(string msg)
 		{
 			if (InvokeRequired)
@@ -511,7 +515,7 @@ namespace ITYaar
 			}
 
 			RTBChatBox.AppendText(msg + Environment.NewLine);
-			Thread.Sleep(50);
+			Thread.Sleep(10);
 			RTBChatBox.SelectionStart = RTBChatBox.Text.Length;
 			RTBChatBox.ScrollToCaret();
 		}
