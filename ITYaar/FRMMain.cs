@@ -44,7 +44,7 @@ namespace ITYaar
 		public System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
 		public string myIpAddress;
 		public Boolean programmingMode = false;
-		public string myVersion = "2";
+		public string myVersion = "5";
 		//public string myPhisicalPath = Assembly.GetExecutingAssembly().Location;//OK
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
@@ -100,8 +100,9 @@ namespace ITYaar
 				///////////////////   اول باید نسخه آپدیتور چک بشه اگر نیاز بود بروز رسانی کنه
 				if (CheckForNewVersion())
 				{
-                    AddLogToUI("نسخه جدید ای تی یار اومده");
-                    //BTNUpdate.Visible = true;
+                    AddLogToUI("New version is available.");
+					this.Text += "  نسخه جدید آماده دانلود و نصب است";
+					//BTNUpdate.Visible = true;
                     //Update();
 				}
                 //////////////////     نسخه خود چک شود و اگر قدیمی بود آپدیتور را اجرا و خود را ببنندد
@@ -274,37 +275,7 @@ namespace ITYaar
             AddLogToUI( "TimerLoadingMSG Started.");
 
 		}
-		private Boolean AddlogToFile1( string massage)
-		{
-			try
-			{
-				Thread.Sleep(50);
 
-				var fullMes = DateTime.Now + " : " + massage + Environment.NewLine;
-                //AddLogToUI(massage);
-                if (File.Exists(myLogfile))
-                {
-                    System.IO.File.AppendAllText(myLogfile, fullMes);
-                    //AddLogToUI("در فایل ثبت شد.");
-					
-                }
-                else
-                {
-                    AddLogToUI("تابع دولاگ - فایل لاگ وجود ندارد");
-                    File.Create(myLogfile);
-                    AddLogToUI("تابع دولاگ - فایل لاگ ایجاد شد");
-                    System.IO.File.AppendAllText(myLogfile, fullMes);
-                    
-                }
-                return true;
-            }
-			catch (Exception ee)
-			{
-				AddLogToUI(" خطا در دسترسی به فایل لاگ" );
-				AddLogToUI(ee.Message);
-				return false;
-            }
-		}
 		private void TXTUserName_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
@@ -319,7 +290,7 @@ namespace ITYaar
 			RTBChatBox.Clear();
 			AddLogToUI("New Key Has been set...");
 			ReadyBox.Enabled = true;
-			BTNRefresh.Enabled = true;
+			//BTNRefresh.Enabled = true;
 			BTNSend.Enabled = true;
 			LoadMessages();
 			StartTimerLoadingMSG();
@@ -376,6 +347,7 @@ namespace ITYaar
 				var st = new StackTrace();
 				var me = st.GetFrame(0).GetMethod().Name;
 				AddLogToUI( "ERROR: " + me + " : " + ee.Message);
+				//return 
 				throw;
 			}
 		}
@@ -434,11 +406,11 @@ namespace ITYaar
 			if (string.IsNullOrWhiteSpace(ReadyBox.Text))
 			{
 				//return;
-				message = username + ": \n" + "اینتر الکی زد";
+				message = username +"=="+ DateTime.Now.TimeOfDay + ": \n" + "اینتر الکی زد";
 			}
 			else
 			{
-				message = username + ": \n" + ReadyBox.Text;
+				message = username + "==" + DateTime.Now.TimeOfDay + ": \n" + ReadyBox.Text;
 
 			}
 			///// رمز گذاری
@@ -481,7 +453,7 @@ namespace ITYaar
 			RTBChatBox.Clear();
 			AddLogToUI( "Old MSG has been delete.");
 			ReadyBox.Enabled = true;
-			BTNRefresh.Enabled = true;
+			//BTNRefresh.Enabled = true;
 			BTNSend.Enabled = true;
 			LoadMessages();
 			StartTimerLoadingMSG();
@@ -864,5 +836,36 @@ AddLogToUI("Remote server = " + remoteServer);
            }
        }
       */
-    
 
+
+//private Boolean AddlogToFile1( string massage)
+//{
+//	try
+//	{
+//		Thread.Sleep(50);
+
+//		var fullMes = DateTime.Now + " : " + massage + Environment.NewLine;
+//              //AddLogToUI(massage);
+//              if (File.Exists(myLogfile))
+//              {
+//                  System.IO.File.AppendAllText(myLogfile, fullMes);
+//                  //AddLogToUI("در فایل ثبت شد.");
+
+//              }
+//              else
+//              {
+//                  AddLogToUI("تابع دولاگ - فایل لاگ وجود ندارد");
+//                  File.Create(myLogfile);
+//                  AddLogToUI("تابع دولاگ - فایل لاگ ایجاد شد");
+//                  System.IO.File.AppendAllText(myLogfile, fullMes);
+
+//              }
+//              return true;
+//          }
+//	catch (Exception ee)
+//	{
+//		AddLogToUI(" خطا در دسترسی به فایل لاگ" );
+//		AddLogToUI(ee.Message);
+//		return false;
+//          }
+//}
