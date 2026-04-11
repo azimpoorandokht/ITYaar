@@ -394,7 +394,7 @@ namespace ITYaar
 			}
 			else
 			{
-				username = myIpAddress + " == " + TXTUserName.Text.Trim() ;
+				username = myIpAddress + " -- " + TXTUserName.Text.Trim() ;
 			}
 			//string username = TXTUserName.Text.Trim() + new Random().Next(100, 999);
 			
@@ -406,11 +406,11 @@ namespace ITYaar
 			if (string.IsNullOrWhiteSpace(ReadyBox.Text))
 			{
 				//return;
-				message = username +"=="+ DateTime.Now.TimeOfDay + ": \n" + "اینتر الکی زد";
+				message = username +" -- "+ DateTime.Now.ToString("HH:mm:ss") + ": \n" + "اینتر الکی زد";
 			}
 			else
 			{
-				message = username + "==" + DateTime.Now.TimeOfDay + ": \n" + ReadyBox.Text;
+				message = username + " -- " + DateTime.Now.ToString("HH:mm:ss") + ": \n" + ReadyBox.Text;
 
 			}
 			///// رمز گذاری
