@@ -44,7 +44,7 @@ namespace ITYaar
 		public System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
 		public string myIpAddress;
 		public Boolean programmingMode = false;
-		public string myVersion = "5";
+		public string myVersion = "1.05";
 		//public string myPhisicalPath = Assembly.GetExecutingAssembly().Location;//OK
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
@@ -73,7 +73,7 @@ namespace ITYaar
 				if (File.Exists(myLogfile))
 				{
 				    File.Delete(myLogfile);
-					Thread.Sleep(100);
+					Thread.Sleep(50);
 				    File.Create(myLogfile);
 				}
                 /////////////////////////////// فایل تنظیمات روچک میکنیم ببینیم هست یا نه
@@ -124,7 +124,7 @@ namespace ITYaar
             AddLogToUI("Remote New Version = " + remoteNewVersion);
 			return remoteNewVersion != myVersion;
         }
-        void CleanOldMessages()
+        void CleanOldMessages(int rooz)
 		{
 			try
 			{
@@ -137,7 +137,7 @@ namespace ITYaar
 				{
 					DateTime fileTime = File.GetLastWriteTime(file);
 
-					if (fileTime < DateTime.Now.AddDays(-1))
+					if (fileTime < DateTime.Now.AddDays(rooz))
 					{
 						File.Delete(file);
 					}
@@ -390,11 +390,11 @@ namespace ITYaar
 			string username = TXTUserName.Text.Trim();
 			if (TXTUserName.Text == "")
 			{
-				username = myIpAddress;
+				username = "V" + myVersion + "--" + myIpAddress;
 			}
 			else
 			{
-				username = myIpAddress + " -- " + TXTUserName.Text.Trim() ;
+				username = "V" + myVersion+"--"  +myIpAddress + " -- " + TXTUserName.Text.Trim() ;
 			}
 			//string username = TXTUserName.Text.Trim() + new Random().Next(100, 999);
 			
@@ -406,7 +406,7 @@ namespace ITYaar
 			if (string.IsNullOrWhiteSpace(ReadyBox.Text))
 			{
 				//return;
-				message = username +" -- "+ DateTime.Now.ToString("HH:mm:ss") + ": \n" + "اینتر الکی زد";
+				message = username + " -- " + DateTime.Now.ToString("HH:mm:ss") + ": \n" + "اینتر الکی زد";
 			}
 			else
 			{
@@ -448,7 +448,7 @@ namespace ITYaar
 		}
 		private void BTNCleanOldMessages_Click(object sender, EventArgs e)
 		{
-			CleanOldMessages();
+			CleanOldMessages(-1);
 			seenFiles.Clear();
 			RTBChatBox.Clear();
 			AddLogToUI( "Old MSG has been delete.");
@@ -466,6 +466,8 @@ namespace ITYaar
 
         private void نسخجدیدToolStripMenuItem_Click(object sender, EventArgs e)
         {
+			///  اول چک کن اگر آپدیتور نیست یا بروز نیست بگیرش
+			///  
             Process.Start("AzUpdator.exe");
             killMeNow();
         }
@@ -478,7 +480,21 @@ namespace ITYaar
 
 			}
 		}
-        void AddMessageToUI(string msg)
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			CleanOldMessages(0);
+			seenFiles.Clear();
+			RTBChatBox.Clear();
+			AddLogToUI("Old MSG has been delete.");
+			ReadyBox.Enabled = true;
+			//BTNRefresh.Enabled = true;
+			BTNSend.Enabled = true;
+			LoadMessages();
+			StartTimerLoadingMSG();
+		}
+
+		void AddMessageToUI(string msg)
 		{
 			if (InvokeRequired)
 			{
@@ -487,7 +503,7 @@ namespace ITYaar
 			}
 
 			RTBChatBox.AppendText(msg + Environment.NewLine);
-			Thread.Sleep(10);
+			Thread.Sleep(5);
 			RTBChatBox.SelectionStart = RTBChatBox.Text.Length;
 			RTBChatBox.ScrollToCaret();
 		}
