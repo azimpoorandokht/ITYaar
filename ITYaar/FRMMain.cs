@@ -45,6 +45,7 @@ namespace ITYaar
 		public string myIpAddress;
 		public Boolean programmingMode = false;
 		public string myVersion = "1.05";
+		public string myComputerName= Environment.MachineName;
 		//public string myPhisicalPath = Assembly.GetExecutingAssembly().Location;//OK
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
@@ -67,6 +68,7 @@ namespace ITYaar
 				this.Text = " برنامه آی تی یار نسخه = " + myVersion;
                 myLogfile = myName + ".log";
 				myConfigFile = myName + ".config.txt";
+				TXTUserName.Text = myComputerName;
 				//MessageBox.Show(myConfigFile);
 				myIpAddress = GetLocalIP();
 				/////////////////////////////// درصورت وجود لاگ فایل پاک شود و بعد دوباره ایجاد شود
