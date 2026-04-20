@@ -341,7 +341,8 @@ namespace ITYaar
         {
 			try
 			{
-                string[] lines = File.ReadAllLines(thisFile); 
+				MessageBox.Show(thisFile);
+				string[] lines = File.ReadAllLines(thisFile); 
                 return lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
 			}
 			catch (Exception ee)
