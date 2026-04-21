@@ -44,7 +44,7 @@ namespace ITYaar
 		public System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
 		public string myIpAddress;
 		public Boolean programmingMode = false;
-		public string myVersion = "1.05";
+		public string myVersion = "1.08";
 		public string myComputerName= Environment.MachineName;
 		//public string myPhisicalPath = Assembly.GetExecutingAssembly().Location;//OK
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -79,20 +79,32 @@ namespace ITYaar
 				    File.Create(myLogfile);
 				}
                 /////////////////////////////// فایل تنظیمات روچک میکنیم ببینیم هست یا نه
-                if (!File.Exists(myConfigFile)) //اگه فایل کنارم نیست ینی تو مود اجرای واقعی هستم دیگه
+                if (!File.Exists(myConfigFile)) //اگه فایل کنارم نیست 
 				{
 					//این قسمت بعدا توسعه پیدا کنه
-					AddLogToUI("فایل کانفیگ نیست که");
-					MessageBox.Show("فایل کانفیگ نیست که");
-					killMeNow();
+					//AddLogToUI("فایل کانفیگ نیست که");
+					//MessageBox.Show("فایل کانفیگ نیست که");
+					//killMeNow();
+					chatFolder = "\\\\172.24.0.9\\Public\\227\\T\\T1";
+
+					///////////////////////////////////////////////// چاپ متغیر ها
+
+					AddLogToUI("My Directory = " + myDirectory.ToString());
+					AddLogToUI("My Name = " + myName.ToString());
+					AddLogToUI("My Log file = " + myLogfile.ToString());
+					AddLogToUI("My Ip Adress= " + myIpAddress);
+					AddLogToUI("My Config file = " + myConfigFile);
+					AddLogToUI("My Version = " + myVersion);
 				}
 				else //فایل تنظیمات کنارمه 
 				{
 					myConfigurationDictionary = retriveConfigFromFile(myConfigFile); //تنظیمات لود بشه
 					chatFolder = myConfigurationDictionary["RoomsAddress"]; ; // مسیر پوشه چت
-                    ///////////////////////////////////////////////// چاپ متغیر ها
-                    //AddLogToUI( "My Phisical Path = " + myPhisicalPath.ToString());
-                    AddLogToUI( "My Directory = " + myDirectory.ToString());
+					//chatFolder = "\\\\172.24.0.9\\Public\\227\\T\\T1";
+					
+					///////////////////////////////////////////////// چاپ متغیر ها
+					
+					AddLogToUI( "My Directory = " + myDirectory.ToString());
                     AddLogToUI( "My Name = " + myName.ToString());
                     AddLogToUI( "My Log file = " + myLogfile.ToString());
                     AddLogToUI( "My Ip Adress= " + myIpAddress);
@@ -120,10 +132,13 @@ namespace ITYaar
 			}
 		}
         public Boolean CheckForNewVersion()
-        {
-			ServerConfigDictiory = retriveConfigFromFile(myConfigurationDictionary["NewVersionAddress"] + "\\info.txt");
+		{
+			//ServerConfigDictiory = retriveConfigFromFile(myConfigurationDictionary["NewVersionAddress"] + "\\info.txt");
+			ServerConfigDictiory = retriveConfigFromFile("\\\\172.24.0.9\\Public\\227\\ITYaarNewVersion" + "\\info.txt");
+			
 			string remoteNewVersion = ServerConfigDictiory["NewVersion"];
-            AddLogToUI("Remote New Version = " + remoteNewVersion);
+			//string remoteNewVersion = "\\\\172.24.0.9\\Public\\227\\ITYaarNewVersion";
+			AddLogToUI("Remote New Version = " + remoteNewVersion);
 			return remoteNewVersion != myVersion;
         }
         void CleanOldMessages(int rooz)
@@ -341,7 +356,7 @@ namespace ITYaar
         {
 			try
 			{
-				MessageBox.Show(thisFile);
+				//MessageBox.Show(thisFile);
 				string[] lines = File.ReadAllLines(thisFile); 
                 return lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
 			}
@@ -425,6 +440,7 @@ namespace ITYaar
 			try
 			{
 				//    AddlogToFile( "Sending...");
+				MessageBox.Show(chatFolder);
 				File.WriteAllText(Path.Combine(chatFolder, fname), message);
 				AddLogToUI( "Sent...");
 			}
