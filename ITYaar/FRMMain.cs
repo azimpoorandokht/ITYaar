@@ -82,19 +82,10 @@ namespace ITYaar
                 if (!File.Exists(myConfigFile)) //اگه فایل کنارم نیست 
 				{
 					//این قسمت بعدا توسعه پیدا کنه
-					//AddLogToUI("فایل کانفیگ نیست که");
+					AddLogToUI("فایل کانفیگ نیست که");
 					//MessageBox.Show("فایل کانفیگ نیست که");
-					//killMeNow();
-					chatFolder = "\\\\172.24.0.9\\Public\\227\\T\\T1";
-
-					///////////////////////////////////////////////// چاپ متغیر ها
-
-					AddLogToUI("My Directory = " + myDirectory.ToString());
-					AddLogToUI("My Name = " + myName.ToString());
-					AddLogToUI("My Log file = " + myLogfile.ToString());
-					AddLogToUI("My Ip Adress= " + myIpAddress);
-					AddLogToUI("My Config file = " + myConfigFile);
-					AddLogToUI("My Version = " + myVersion);
+					killMeNow();
+								
 				}
 				else //فایل تنظیمات کنارمه 
 				{
@@ -111,6 +102,7 @@ namespace ITYaar
                     AddLogToUI("My Config file = " + myConfigFile);
                     AddLogToUI("My Version = " + myVersion);
                 }
+
 				///////////////////   اول باید نسخه آپدیتور چک بشه اگر نیاز بود بروز رسانی کنه
 				if (CheckForNewVersion())
 				{
