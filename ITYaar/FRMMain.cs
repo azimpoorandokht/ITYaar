@@ -45,12 +45,9 @@ namespace ITYaar
 		public string myIpAddress;
 		public Boolean programmingMode = false;
 		public string myVersion = "1.08";
-		public string myComputerName= Environment.MachineName;
-		//public string myPhisicalPath = Assembly.GetExecutingAssembly().Location;//OK
+		public string myComputerName = Environment.MachineName;
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
-		//public string local_Update_Path;
-		//public string Remote_Update_Path;
 		public string myLogfile; 
 		public string myConfigFile;
         public Dictionary<string, string> myConfigurationDictionary, ServerConfigDictiory;
@@ -59,6 +56,9 @@ namespace ITYaar
 		public string chatFolder = "";
 		public DateTime lastCheck = DateTime.MinValue;
 		public HashSet<string> seenFiles = new HashSet<string>();
+		//public string myPhisicalPath = Assembly.GetExecutingAssembly().Location;//OK
+		//public string local_Update_Path;
+		//public string Remote_Update_Path;
 		#endregion
 		private void FRMMain_Load(object sender, EventArgs e)
 		{
@@ -85,14 +85,11 @@ namespace ITYaar
 					AddLogToUI("فایل کانفیگ نیست که");
 					//MessageBox.Show("فایل کانفیگ نیست که");
 					killMeNow();
-								
 				}
 				else //فایل تنظیمات کنارمه 
 				{
 					myConfigurationDictionary = retriveConfigFromFile(myConfigFile); //تنظیمات لود بشه
 					chatFolder = myConfigurationDictionary["RoomsAddress"]; ; // مسیر پوشه چت
-					
-					
 					///////////////////////////////////////////////// چاپ متغیر ها
 					
 					AddLogToUI( "My Directory = " + myDirectory.ToString());
@@ -114,7 +111,6 @@ namespace ITYaar
                 //////////////////     نسخه خود چک شود و اگر قدیمی بود آپدیتور را اجرا و خود را ببنندد
                 //////////////////    اول استراتژی بچین
                 /////////////////  بریم برای اجرای خوانش پیام ها
-
             }
             catch (Exception ee)
 			{
@@ -167,6 +163,58 @@ namespace ITYaar
 		private void sendButton_Click(object sender, EventArgs e)
 		{
 			SendMessage();
+		}
+		void SendMessage()
+		{
+			////////////////// اول چک کن این متغیر توی تنظیمات هست یا نه
+			//RoomsAddress
+			/////////////////// اسمش اینجا ساخته بشه با تاریخ و ساعت و و کاربر و ای پی 
+			string username = TXTUserName.Text.Trim();
+			if (TXTUserName.Text == "")
+			{
+				username = "V" + myVersion + "--" + myIpAddress;
+			}
+			else
+			{
+				username = "V" + myVersion + "--" + myIpAddress + " -- " + TXTUserName.Text.Trim();
+			}
+			//string username = TXTUserName.Text.Trim() + new Random().Next(100, 999);
+
+
+			// بعد رمز بشه بر توی یه فایل توی سرور بشینه
+
+			// اینجا یه فایل باید ایجاد کنیم توی سرور
+			string message = "خالی";
+			if (string.IsNullOrWhiteSpace(ReadyBox.Text))
+			{
+				//return;
+				message = username + " -- " + DateTime.Now.ToString("HH:mm:ss") + ": \n" + "اینتر الکی زد";
+			}
+			else
+			{
+				message = username + " -- " + DateTime.Now.ToString("HH:mm:ss") + ": \n" + ReadyBox.Text;
+
+			}
+			///// رمز گذاری
+			message = chrobj.xxMixedWithKey(chrobj.xxAzTabeHaft(message, 10), TXTKey.Text.Trim());
+
+			//// اینجا باید پیام خودم به باکس اضافه شود 
+			string fname = DateTime.Now.ToString("yyyyMMdd_HHmmss_fff") + "_" + username + ".txt";
+
+			try
+			{
+				//    AddlogToFile( "Sending...");
+				MessageBox.Show(chatFolder);
+				File.WriteAllText(Path.Combine(chatFolder, fname), message);
+				AddLogToUI("Sent...");
+			}
+			catch (Exception ex)
+			{
+				AddLogToUI("Error: Write error." + ex.Message);
+				//MessageBox.Show("خطا در نوشتن پیام:\n" + ex.Message);
+			}
+
+			ReadyBox.Clear();
 		}
 		private void Refresh_Click(object sender, EventArgs e)
 		{
@@ -304,8 +352,7 @@ namespace ITYaar
 			StartTimerLoadingMSG();
 		}
 		///////////////////////////////////////////////////////////////////////// Function
-		private void killMeNow
-			()
+		private void killMeNow()
 		{
 			if (!programmingMode)
 			{
@@ -391,58 +438,7 @@ namespace ITYaar
 			}
 			
 		}
-		void SendMessage()
-		{
-			////////////////// اول چک کن این متغیر توی تنظیمات هست یا نه
-			//RoomsAddress
-			/////////////////// اسمش اینجا ساخته بشه با تاریخ و ساعت و و کاربر و ای پی 
-			string username = TXTUserName.Text.Trim();
-			if (TXTUserName.Text == "")
-			{
-				username = "V" + myVersion + "--" + myIpAddress;
-			}
-			else
-			{
-				username = "V" + myVersion+"--"  +myIpAddress + " -- " + TXTUserName.Text.Trim() ;
-			}
-			//string username = TXTUserName.Text.Trim() + new Random().Next(100, 999);
-			
-
-			// بعد رمز بشه بر توی یه فایل توی سرور بشینه
-
-			// اینجا یه فایل باید ایجاد کنیم توی سرور
-			string message = "خالی";
-			if (string.IsNullOrWhiteSpace(ReadyBox.Text))
-			{
-				//return;
-				message = username + " -- " + DateTime.Now.ToString("HH:mm:ss") + ": \n" + "اینتر الکی زد";
-			}
-			else
-			{
-				message = username + " -- " + DateTime.Now.ToString("HH:mm:ss") + ": \n" + ReadyBox.Text;
-
-			}
-			///// رمز گذاری
-			message = chrobj.xxMixedWithKey(chrobj.xxAzTabeHaft(message, 10), TXTKey.Text.Trim());
-
-			//// اینجا باید پیام خودم به باکس اضافه شود 
-			string fname = DateTime.Now.ToString("yyyyMMdd_HHmmss_fff") + "_" + username + ".txt";
-
-			try
-			{
-				//    AddlogToFile( "Sending...");
-				MessageBox.Show(chatFolder);
-				File.WriteAllText(Path.Combine(chatFolder, fname), message);
-				AddLogToUI( "Sent...");
-			}
-			catch (Exception ex)
-			{
-                AddLogToUI( "Error: Write error." + ex.Message);
-				//MessageBox.Show("خطا در نوشتن پیام:\n" + ex.Message);
-			}
-
-			ReadyBox.Clear();
-		}
+		
 		private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
 		{
 
