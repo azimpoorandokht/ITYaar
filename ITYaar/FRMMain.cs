@@ -51,7 +51,7 @@ namespace ITYaar
         public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
 		//public string local_Update_Path;
 		//public string Remote_Update_Path;
-		public string myLogfile;
+		public string myLogfile; 
 		public string myConfigFile;
         public Dictionary<string, string> myConfigurationDictionary, ServerConfigDictiory;
 		public string myMachinName = System.Environment.MachineName;
@@ -91,7 +91,7 @@ namespace ITYaar
 				{
 					myConfigurationDictionary = retriveConfigFromFile(myConfigFile); //تنظیمات لود بشه
 					chatFolder = myConfigurationDictionary["RoomsAddress"]; ; // مسیر پوشه چت
-					//chatFolder = "\\\\172.24.0.9\\Public\\227\\T\\T1";
+					
 					
 					///////////////////////////////////////////////// چاپ متغیر ها
 					
@@ -284,7 +284,6 @@ namespace ITYaar
             AddLogToUI( "TimerLoadingMSG Started.");
 
 		}
-
 		private void TXTUserName_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
