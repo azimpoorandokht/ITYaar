@@ -44,7 +44,7 @@ namespace ITYaar
 		public System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
 		public string myIpAddress;
 		public Boolean programmingMode = false;
-		public string myVersion = "1.08";
+		public string myVersion = "1.09";
 		public string myComputerName = Environment.MachineName;
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
@@ -53,9 +53,11 @@ namespace ITYaar
         public Dictionary<string, string> myConfigurationDictionary, ServerConfigDictiory;
 		public string myMachinName = System.Environment.MachineName;
 		private CodeDecode chrobj = new CodeDecode();
-		public string chatFolder = "";
+		public string chatFolder ;
+		public string updatorAddress;
 		public DateTime lastCheck = DateTime.MinValue;
 		public HashSet<string> seenFiles = new HashSet<string>();
+		public string MyUpdator = "AzUpdator.exe";
 		//public string myPhisicalPath = Assembly.GetExecutingAssembly().Location;//OK
 		//public string local_Update_Path;
 		//public string Remote_Update_Path;
@@ -90,8 +92,10 @@ namespace ITYaar
 				{
 					myConfigurationDictionary = retriveConfigFromFile(myConfigFile); //تنظیمات لود بشه
 					chatFolder = myConfigurationDictionary["RoomsAddress"]; ; // مسیر پوشه چت
-					///////////////////////////////////////////////// چاپ متغیر ها
+					//updatorAddress = myConfigurationDictionary["UpdatorAddress"]; ; // مسیر آپدیتور
 					
+					///////////////////////////////////////////////// چاپ متغیر ها
+
 					AddLogToUI( "My Directory = " + myDirectory.ToString());
                     AddLogToUI( "My Name = " + myName.ToString());
                     AddLogToUI( "My Log file = " + myLogfile.ToString());
@@ -472,9 +476,16 @@ namespace ITYaar
 
         private void نسخجدیدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			///  اول چک کن اگر آپدیتور نیست یا بروز نیست بگیرش
-			///  
-            Process.Start("AzUpdator.exe");
+			string Remote_Update_Path = myConfigurationDictionary["UpdatorAddress"];
+			string sourceFile = Path.Combine(Remote_Update_Path, @"new.zip");
+			string destinationFile = Path.Combine(myDirectory, "new.zip");
+			//  اول چک کن اگر آپدیتور نیست یا بروز نیست بگیرش
+			if (!File.Exists(MyUpdator)) // بگیرش اگه فایل اپدیتور کنارم نیست 
+			{
+				// داشتم اینجا رو مینوشتم
+			}
+
+				Process.Start(MyUpdator);
             killMeNow();
         }
 
