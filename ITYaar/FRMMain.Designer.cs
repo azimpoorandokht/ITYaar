@@ -70,9 +70,9 @@
 			this.LB.BackColor = System.Drawing.SystemColors.ActiveBorder;
 			this.LB.ForeColor = System.Drawing.SystemColors.ScrollBar;
 			this.LB.FormattingEnabled = true;
-			this.LB.Location = new System.Drawing.Point(36, 603);
+			this.LB.Location = new System.Drawing.Point(12, 603);
 			this.LB.Name = "LB";
-			this.LB.Size = new System.Drawing.Size(1049, 82);
+			this.LB.Size = new System.Drawing.Size(1076, 82);
 			this.LB.TabIndex = 8;
 			// 
 			// TimerLoadingMSG
