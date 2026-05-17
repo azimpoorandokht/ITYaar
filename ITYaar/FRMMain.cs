@@ -6,6 +6,7 @@ using System.Data.OleDb;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
@@ -44,7 +45,7 @@ namespace ITYaar
 		public System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
 		public string myIpAddress;
 		public Boolean programmingMode = false;
-		public string myVersion = "1.09";
+		public string myVersion = "1.10";
 		public string myComputerName = Environment.MachineName;
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
@@ -482,6 +483,17 @@ namespace ITYaar
 			//  اول چک کن اگر آپدیتور نیست یا بروز نیست بگیرش
 			if (!File.Exists(MyUpdator)) // بگیرش اگه فایل اپدیتور کنارم نیست 
 			{
+				File.Copy(sourceFile, destinationFile, true);
+				AddLogToUI("new.zip Copied ...");
+				string zipPath = "new.zip";
+				string extractPath = myDirectory; //"app";
+				if (File.Exists(zipPath))
+				{
+					ZipFile.ExtractToDirectory(zipPath, extractPath);
+					AddLogToUI("new.zip Extracted ...");
+					File.Delete(zipPath);
+					AddLogToUI("new.zip Deleted ...");
+				}
 				// داشتم اینجا رو مینوشتم
 			}
 
