@@ -35,7 +35,6 @@
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.btnKillSession = new System.Windows.Forms.Button();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.button1 = new System.Windows.Forms.Button();
 			this.TXTKey = new System.Windows.Forms.TextBox();
@@ -58,6 +57,7 @@
 			this.راهنماToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.نسخجدیدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.دربارهبرنامهToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnKillSession = new System.Windows.Forms.Button();
 			this.tabPage1.SuspendLayout();
 			this.tabPage4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.NUDTalar)).BeginInit();
@@ -109,16 +109,6 @@
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "عملیات";
 			this.tabPage1.UseVisualStyleBackColor = true;
-			// 
-			// btnKillSession
-			// 
-			this.btnKillSession.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-			this.btnKillSession.Location = new System.Drawing.Point(9, 6);
-			this.btnKillSession.Name = "btnKillSession";
-			this.btnKillSession.Size = new System.Drawing.Size(202, 40);
-			this.btnKillSession.TabIndex = 4;
-			this.btnKillSession.Text = "رفع مشکل ورود به خوددریافت";
-			this.btnKillSession.UseVisualStyleBackColor = true;
 			// 
 			// tabPage4
 			// 
@@ -364,6 +354,17 @@
 			this.دربارهبرنامهToolStripMenuItem.Text = "درباره برنامه";
 			this.دربارهبرنامهToolStripMenuItem.Click += new System.EventHandler(this.دربارهبرنامهToolStripMenuItem_Click);
 			// 
+			// btnKillSession
+			// 
+			this.btnKillSession.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+			this.btnKillSession.Location = new System.Drawing.Point(9, 6);
+			this.btnKillSession.Name = "btnKillSession";
+			this.btnKillSession.Size = new System.Drawing.Size(202, 40);
+			this.btnKillSession.TabIndex = 4;
+			this.btnKillSession.Text = "رفع مشکل ورود به خوددریافت";
+			this.btnKillSession.UseVisualStyleBackColor = true;
+			this.btnKillSession.Click += new System.EventHandler(this.btnKillSession_Click_1);
+			// 
 			// FRMMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -397,7 +398,6 @@
 		private System.Windows.Forms.TabPage tabPage3;
 		private System.Windows.Forms.TabPage tabPage2;
 		private System.Windows.Forms.TabPage tabPage1;
-		private System.Windows.Forms.Button btnKillSession;
 		private System.Windows.Forms.TabPage tabPage4;
 		private System.Windows.Forms.TextBox TXTKey;
 		private System.Windows.Forms.TextBox TXTUserName;
@@ -420,6 +420,7 @@
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnKillSession;
 	}
 }
 

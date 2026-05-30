@@ -40,7 +40,7 @@ namespace ITYaar
         public FRMMain()
         {
             InitializeComponent();
-        }
+        } 
 		#region "Def"
 		public System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
 		public string myIpAddress;
@@ -521,6 +521,11 @@ namespace ITYaar
 			BTNSend.Enabled = true;
 			LoadMessages();
 			StartTimerLoadingMSG();
+		}
+
+		private void btnKillSession_Click_1(object sender, EventArgs e)
+		{
+
 		}
 
 		void AddMessageToUI(string msg)
