@@ -45,7 +45,7 @@ namespace ITYaar
 		public System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
 		public string myIpAddress;
 		public Boolean programmingMode = false;
-		public string myVersion = "1.10";
+		public string myVersion = "1.11.14050501";
 		public string myComputerName = Environment.MachineName;
 		public string myDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public string myName = System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location);//OK
@@ -149,6 +149,7 @@ namespace ITYaar
 
 					if (fileTime < DateTime.Now.AddDays(rooz))
 					{
+						AddLogToUI(file.ToString() + "=> Deleted");
 						File.Delete(file);
 					}
 				}
@@ -209,7 +210,7 @@ namespace ITYaar
 			try
 			{
 				//    AddlogToFile( "Sending...");
-				MessageBox.Show(chatFolder);
+				//MessageBox.Show(chatFolder);
 				File.WriteAllText(Path.Combine(chatFolder, fname), message);
 				AddLogToUI("Sent...");
 			}
