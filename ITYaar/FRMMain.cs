@@ -496,6 +496,7 @@ namespace ITYaar
 					AddLogToUI("new.zip Deleted ...");
 				}
 				// داشتم اینجا رو مینوشتم
+
 			}
 
 				Process.Start(MyUpdator);
