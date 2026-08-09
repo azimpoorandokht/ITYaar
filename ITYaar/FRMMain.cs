@@ -92,9 +92,11 @@ namespace ITYaar
 				else //فایل تنظیمات کنارمه 
 				{
 					myConfigurationDictionary = retriveConfigFromFile(myConfigFile); //تنظیمات لود بشه
+					//MessageBox.Show(myConfigurationDictionary["RoomsAddress"]);
 					chatFolder = myConfigurationDictionary["RoomsAddress"]; ; // مسیر پوشه چت
+					//  \\172.24.0.9\Public\227\T\T1
 					//updatorAddress = myConfigurationDictionary["UpdatorAddress"]; ; // مسیر آپدیتور
-					
+
 					///////////////////////////////////////////////// چاپ متغیر ها
 
 					AddLogToUI( "My Directory = " + myDirectory.ToString());
@@ -108,7 +110,7 @@ namespace ITYaar
 				///////////////////   اول باید نسخه آپدیتور چک بشه اگر نیاز بود بروز رسانی کنه
 				if (CheckForNewVersion())
 				{
-                    AddLogToUI("New version is available.");
+                    
 					this.Text += "  نسخه جدید آماده دانلود و نصب است";
 					//BTNUpdate.Visible = true;
                     //Update();
@@ -126,13 +128,26 @@ namespace ITYaar
 		}
         public Boolean CheckForNewVersion()
 		{
-			//ServerConfigDictiory = retriveConfigFromFile(myConfigurationDictionary["NewVersionAddress"] + "\\info.txt");
-			ServerConfigDictiory = retriveConfigFromFile("\\\\172.24.0.9\\Public\\227\\ITYaarNewVersion" + "\\info.txt");
-			
-			string remoteNewVersion = ServerConfigDictiory["NewVersion"];
-			//string remoteNewVersion = "\\\\172.24.0.9\\Public\\227\\ITYaarNewVersion";
-			AddLogToUI("Remote New Version = " + remoteNewVersion);
-			return remoteNewVersion != myVersion;
+			try
+			{
+				// اینجا باید وجود فایل در آدرس چک شود
+
+				ServerConfigDictiory = retriveConfigFromFile(myConfigurationDictionary["NewVersionAddress"] + "\\info.txt");
+
+				//ServerConfigDictiory = retriveConfigFromFile("\\\\172.24.0.9\\Public\\227\\ITYaarNewVersion" + "\\info.txt");
+
+				string remoteNewVersion = ServerConfigDictiory["NewVersion"];
+				//string remoteNewVersion = "\\\\172.24.0.9\\Public\\227\\ITYaarNewVersion";
+				AddLogToUI("Remote New Version = " + remoteNewVersion);
+				AddLogToUI("New version is available.");
+				return remoteNewVersion != myVersion;
+
+			}
+			catch
+			{
+				AddLogToUI("Fake New Version Alarm.");
+				return true;
+			}
         }
         void CleanOldMessages(int rooz)
 		{
@@ -398,8 +413,9 @@ namespace ITYaar
 		}
 		private Dictionary<string, string> retriveConfigFromFile(string thisFile) //if (File.Exists(myConfigFile))
         {
-			try
+		try
 			{
+				// این جا چک کن اگر فایل مورد نظر سر جاش نیست با تنظیم پیشفرض بیاد بالا
 				//MessageBox.Show(thisFile);
 				string[] lines = File.ReadAllLines(thisFile); 
                 return lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
