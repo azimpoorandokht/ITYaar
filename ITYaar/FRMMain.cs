@@ -110,6 +110,7 @@ namespace ITYaar
 				///////////////////   اول باید نسخه آپدیتور چک بشه اگر نیاز بود بروز رسانی کنه
 				if (CheckForNewVersion())
 				{
+
                     
 					this.Text += "  نسخه جدید آماده دانلود و نصب است";
 					//BTNUpdate.Visible = true;
