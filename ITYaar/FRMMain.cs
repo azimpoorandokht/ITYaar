@@ -63,7 +63,7 @@ namespace ITYaar
 		//public string local_Update_Path;
 		//public string Remote_Update_Path;
 		#endregion
-		private void FRMMain_Load(object sender, EventArgs e)
+		private void FRMMain_Load(object sender, EventArgs e) 
 		{
 			try
 			{
