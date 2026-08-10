@@ -81,9 +81,20 @@ namespace ITYaar
 					//این قسمت بعدا توسعه پیدا کنه
 					AddLogToUI("فایل کانفیگ نیست که");
 					//MessageBox.Show("فایل کانفیگ نیست که");
-					killMeNow();
-				}
-				else //فایل تنظیمات کنارمه 
+					//killMeNow();
+					myConfigurationDictionary = new Dictionary<string, string>();
+                    myConfigurationDictionary["UpdatorAddress"] = "\\\\ASUS - V502UX\\Server\\AzUpdator";
+                    myConfigurationDictionary["NewVersionAddress"] = "\\\\ASUS - V502UX\\Server\\ITYaar";
+                    myConfigurationDictionary["RoomsAddress"] = "\\\\ASUS - V502UX\\Server\\T";
+
+					//Edare:
+                    //myConfigurationDictionary["UpdatorAddress"] = "\\\\ASUS - V502UX\\Server\\AzUpdator";
+                    //myConfigurationDictionary["NewVersionAddress"] = "\\\\ASUS - V502UX\\Server\\ITYaar";
+                    //myConfigurationDictionary["RoomsAddress"] = "\\\\ASUS - V502UX\\Server\\T";
+
+
+                }
+                else //فایل تنظیمات کنارمه 
 				{
 					myConfigurationDictionary = retriveConfigFromFile(myConfigFile); //تنظیمات لود بشه
 					//MessageBox.Show(myConfigurationDictionary["RoomsAddress"]);
@@ -99,26 +110,28 @@ namespace ITYaar
                     AddLogToUI( "My Ip Adress= " + myIpAddress);
                     AddLogToUI("My Config file = " + myConfigFile);
                     AddLogToUI("My Version = " + myVersion);
+                    ///////////////////   اول باید نسخه آپدیتور چک بشه اگر نیاز بود بروز رسانی کنه
+                    if (CheckForNewVersion())
+                    {
+
+
+                        this.Text += "  نسخه جدید آماده دانلود و نصب است";
+                        //BTNUpdate.Visible = true;
+                        //Update();
+                    }
                 }
 
-				///////////////////   اول باید نسخه آپدیتور چک بشه اگر نیاز بود بروز رسانی کنه
-				if (CheckForNewVersion())
-				{
-
-                    
-					this.Text += "  نسخه جدید آماده دانلود و نصب است";
-					//BTNUpdate.Visible = true;
-                    //Update();
-				}
+				
                 //////////////////     نسخه خود چک شود و اگر قدیمی بود آپدیتور را اجرا و خود را ببنندد
                 //////////////////    اول استراتژی بچین
                 /////////////////  بریم برای اجرای خوانش پیام ها
             }
             catch (Exception ee)
 			{
-				AddLogToUI( "Error: " + ee.Message);
-				//AddLogToUI(ee.Message);
-				throw;
+				AddLogToUI( "Event : FormLoad");
+                AddLogToUI("Error: " + ee.Message);
+                //AddLogToUI(ee.Message);
+                throw;
 			}
 		}
         public Boolean CheckForNewVersion()
@@ -419,7 +432,7 @@ namespace ITYaar
 			{
 				var st = new StackTrace();
 				var me = st.GetFrame(0).GetMethod().Name;
-				AddLogToUI( "ERROR: " + me + " : " + ee.Message);
+				AddLogToUI("ERROR: " + me + " : " + ee.Message);
 				//return 
 				throw;
 			}
@@ -541,7 +554,7 @@ namespace ITYaar
 
 		}
 
-		void AddMessageToUI(string msg)
+        void AddMessageToUI(string msg)
 		{
 			if (InvokeRequired)
 			{
