@@ -147,7 +147,7 @@
             this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage4.Size = new System.Drawing.Size(1456, 670);
+            this.tabPage4.Size = new System.Drawing.Size(1163, 2653);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "استخبارات";
             // 
@@ -317,7 +317,7 @@
             this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tabControl1.RightToLeftLayout = true;
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1464, 705);
+            this.tabControl1.Size = new System.Drawing.Size(1171, 2688);
             this.tabControl1.TabIndex = 7;
             // 
             // tabPage5
@@ -350,7 +350,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1464, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1171, 28);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -369,20 +369,20 @@
             // راهنماToolStripMenuItem1
             // 
             this.راهنماToolStripMenuItem1.Name = "راهنماToolStripMenuItem1";
-            this.راهنماToolStripMenuItem1.Size = new System.Drawing.Size(168, 26);
+            this.راهنماToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.راهنماToolStripMenuItem1.Text = "راهنما";
             // 
             // نسخجدیدToolStripMenuItem
             // 
             this.نسخجدیدToolStripMenuItem.Name = "نسخجدیدToolStripMenuItem";
-            this.نسخجدیدToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.نسخجدیدToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.نسخجدیدToolStripMenuItem.Text = "بروزرسانی";
             this.نسخجدیدToolStripMenuItem.Click += new System.EventHandler(this.نسخجدیدToolStripMenuItem_Click);
             // 
             // دربارهبرنامهToolStripMenuItem
             // 
             this.دربارهبرنامهToolStripMenuItem.Name = "دربارهبرنامهToolStripMenuItem";
-            this.دربارهبرنامهToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.دربارهبرنامهToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.دربارهبرنامهToolStripMenuItem.Text = "درباره برنامه";
             this.دربارهبرنامهToolStripMenuItem.Click += new System.EventHandler(this.دربارهبرنامهToolStripMenuItem_Click);
             // 
@@ -391,7 +391,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1464, 955);
+            this.ClientSize = new System.Drawing.Size(1171, 764);
             this.Controls.Add(this.LB);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);

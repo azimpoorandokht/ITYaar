@@ -71,7 +71,8 @@ namespace ITYaar
 				/////////////////////////////// درصورت وجود لاگ فایل پاک شود و بعد دوباره ایجاد شود
 				if (File.Exists(myLogfile))
 				{
-				    File.Delete(myLogfile);
+                    AddLogToUI("فایل لاگ حذف شد");
+                    File.Delete(myLogfile);
 					Thread.Sleep(50);
 				    File.Create(myLogfile);
 				}
@@ -87,11 +88,12 @@ namespace ITYaar
                     myConfigurationDictionary["NewVersionAddress"] = "\\\\ASUS - V502UX\\Server\\ITYaar";
                     myConfigurationDictionary["RoomsAddress"] = "\\\\ASUS - V502UX\\Server\\T";
 
-					//Edare:
+                    //Edare:
                     //myConfigurationDictionary["UpdatorAddress"] = "\\\\ASUS - V502UX\\Server\\AzUpdator";
                     //myConfigurationDictionary["NewVersionAddress"] = "\\\\ASUS - V502UX\\Server\\ITYaar";
                     //myConfigurationDictionary["RoomsAddress"] = "\\\\ASUS - V502UX\\Server\\T";
-
+                    //MessageBox.Show("فایل کانفیگ نیست که");
+                    //killMeNow();
 
                 }
                 else //فایل تنظیمات کنارمه 
@@ -118,13 +120,13 @@ namespace ITYaar
                         this.Text += "  نسخه جدید آماده دانلود و نصب است";
                         //BTNUpdate.Visible = true;
                         //Update();
+                        //UpdateMyVersion
                     }
                 }
 
 				
                 //////////////////     نسخه خود چک شود و اگر قدیمی بود آپدیتور را اجرا و خود را ببنندد
-                //////////////////    اول استراتژی بچین
-                /////////////////  بریم برای اجرای خوانش پیام ها
+                
             }
             catch (Exception ee)
 			{
@@ -499,32 +501,35 @@ namespace ITYaar
 			// اول چک کن اپدیتور کنارت هست یا نه اگه نبود از سرور بگیرش
 			
         }
+        private void UpdateMyVersion() 
+		{
+            string Remote_Update_Path = myConfigurationDictionary["UpdatorAddress"];
+            string sourceFile = Path.Combine(Remote_Update_Path, @"new.zip");
+            string destinationFile = Path.Combine(myDirectory, "new.zip");
+            //  اول چک کن اگر آپدیتور نیست یا بروز نیست بگیرش
+            if (!File.Exists(MyUpdator)) // بگیرش اگه فایل اپدیتور کنارم نیست 
+            {
+                File.Copy(sourceFile, destinationFile, true);
+                AddLogToUI("new.zip Copied ...");
+                string zipPath = "new.zip";
+                string extractPath = myDirectory; //"app";
+                if (File.Exists(zipPath))
+                {
+                    ZipFile.ExtractToDirectory(zipPath, extractPath);
+                    AddLogToUI("new.zip Extracted ...");
+                    File.Delete(zipPath);
+                    AddLogToUI("new.zip Deleted ...");
+                }
+                // داشتم اینجا رو مینوشتم
 
+            }
+
+            Process.Start(MyUpdator);
+            killMeNow();
+        }
         private void نسخجدیدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			string Remote_Update_Path = myConfigurationDictionary["UpdatorAddress"];
-			string sourceFile = Path.Combine(Remote_Update_Path, @"new.zip");
-			string destinationFile = Path.Combine(myDirectory, "new.zip");
-			//  اول چک کن اگر آپدیتور نیست یا بروز نیست بگیرش
-			if (!File.Exists(MyUpdator)) // بگیرش اگه فایل اپدیتور کنارم نیست 
-			{
-				File.Copy(sourceFile, destinationFile, true);
-				AddLogToUI("new.zip Copied ...");
-				string zipPath = "new.zip";
-				string extractPath = myDirectory; //"app";
-				if (File.Exists(zipPath))
-				{
-					ZipFile.ExtractToDirectory(zipPath, extractPath);
-					AddLogToUI("new.zip Extracted ...");
-					File.Delete(zipPath);
-					AddLogToUI("new.zip Deleted ...");
-				}
-				// داشتم اینجا رو مینوشتم
-
-			}
-
-				Process.Start(MyUpdator);
-            killMeNow();
+			UpdateMyVersion();
         }
 
 		private void TXTKey_KeyDown(object sender, KeyEventArgs e)
